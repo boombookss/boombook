@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BoomBook's - Accueil</title>
+        <link rel="stylesheet" href="styles.css">
+        <script defer src="script.js"></script>
+    </head>
+                </div>
+            </header>
+             <!-- En-tête avec le titre et les boutons -->
+             <header class="header-container">
+                <h1 class="site-title">BoomBook's</h1>
+                <nav class="icon-menu">
+                    <a href="catalogue.php" class="icon-btn" title="Catalogue"><i class="fas fa-book"></i></a>
+                    <a href="panier.php" class="icon-btn" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="login.php" class="icon-btn" title="Connexion"><i class="fas fa-sign-in-alt"></i></a>
+                    <a href="register.php" class="icon-btn" title="Inscription"><i class="fas fa-user-plus"></i></a>
+                    <a href="profil.php" class="icon-btn" title="Profil"><i class="fas fa-user"></i></a>
+                </nav>
+            </header>
+    <header>
+        <a href="index.php">⬅ Retour</a>
+    </header>
+
+    <section>
+        <h1>Catalogue des livres</h1>
+        <div class="catalogue">
+            <div class="livre">📖 Livre 1</div>
+            <div class="livre">📖 Livre 2</div>
+            <div class="livre">📖 Livre 3</div>
+        </div>
+    </section>
+
+</body>
+</html>
+<section class="top-livres">
+    <div class="top-livres-container">
+  <h2 class="top-livres-titre">TOP LIVRES</h2>
+  <button> <a href="top-livres.php" class="top-livres-bouton">VOIR PLUS</a></button>
+</div>
+
+    <div class="livres-container">
+        <button class="arrow left" onclick="scrollGauche()">&lt;</button>
+
+        <div class="livres-wrapper">
+            <div class="livre" data-id="1">
+                <img src="img/photo_2025-02-19_00-01-22.jpg" alt="Livre 1">
+                <h3>Titre du Livre 1</h3>
+                <p class="description">Un résumé captivant du livre...</p>
+                <p class="prix">Prix : <strong>5000 FCFA</strong></p>
+                <div class="stars">⭐⭐⭐⭐☆ (4.5)</div>
+                <button onclick="ajouterAuPanier(1, 'Titre du Livre 1', 5000, 'livre1.jpg')">Ajouter au panier</button>
+            </div>
+
+            <div class="livre">
+    <img src="livre2.jpg" alt="Livre 1">
+    <h3>Nom du livre</h3>
+    <p>Description rapide du livre...</p>
+    <p><strong>Prix : </strong> <span class="prix">5000</span> FCFA</p>
+    <div class="stars">⭐⭐⭐⭐☆ (4.5)</div>
+    <button onclick="ajouterAuPanier(this)('Nom du livre', 5000)">🛒 Ajouter au panier</button>
+</div>
+
+            <div class="livre" data-id="3">
+                <img src="livre.jpg" alt="Livre 3">
+                <h3>Titre du Livre 3</h3>
+                <p class="description">Un résumé captivant du livre...</p>
+                <p class="prix">Prix : <strong>4500 FCFA</strong></p>
+                <div class="stars">⭐⭐⭐⭐ (4.0)</div>
+                <button onclick="ajouterAuPanier(3, 'Titre du Livre 3', 4500, 'livre3.jpg')">Ajouter au panier</button>
+            </div>
+
+            <div class="livre" data-id="4">
+                <img src="livre4.jpg" alt="Livre 4">
+                <h3>Titre du Livre 4</h3>
+                <p class="description">Un résumé captivant du livre...</p>
+                <p class="prix">Prix : <strong>6000 FCFA</strong></p>
+                <div class="stars">⭐⭐⭐⭐⭐ (5.0)</div>
+                <button onclick="ajouterAuPanier(4, 'Titre du Livre 4', 6000, 'livre4.jpg')">Ajouter au panier</button>
+            </div>
+        </div>
+        
+        <button class="arrow right" onclick="scrollDroite()">&gt;</button>
+    </div>
+
+</section>
+<style>
+.top-livres {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.top-livres h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.livres-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.livres-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 10px;
+    flex: 1;
+}
+
+.livre {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 200px;
+    max-width: 220px;
+}
+
+.livre img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.livre h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.livre .description {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.livre .prix {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.livre .stars {
+    color: gold;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.livre button {
+    background: #ff5e78;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.livre button:hover {
+    background: #ff3d5c;
+}
+
+.arrow {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow.left {
+    left: -10px;
+}
+
+.arrow.right {
+    right: -10px;
+}
+
+.voir-plus {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.voir-plus:hover {
+    background: black;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .livres-wrapper {
+        gap: 10px;
+    }
+
+    .arrow {
+        font-size: 18px;
+        padding: 8px 12px;
+    }
+}
+
