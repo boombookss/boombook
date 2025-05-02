@@ -1530,3 +1530,109 @@ footer.visible {
     }
   }
 </style>
+
+<div id="connected-widget">
+  <i class="fa fa-users icon"></i>
+  <span id="connectedUsers">0</span> en ligne
+  <span class="close-btn">&times;</span>
+</div>
+<style>
+  #connected-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1a1d2e;
+  color: #f5f5f5;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 8px rgba(126, 87, 194, 0.4);
+  cursor: move;
+  z-index: 9999;
+  user-select: none;
+  max-width: 90%;
+  flex-wrap: wrap;
+}
+
+#connected-widget .icon {
+  color: #ff9800;
+  font-size: 18px;
+}
+
+#connected-widget .close-btn {
+  margin-left: auto;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 16px;
+}
+
+#connected-widget .close-btn:hover {
+  color: #f44336;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  #connected-widget {
+    bottom: 10px;
+    right: 10px;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 16px;
+  }
+
+  #connected-widget .icon {
+    font-size: 16px;
+  }
+
+  #connected-widget .close-btn {
+    font-size: 14px;
+  }
+}
+
+</style>
+<script>
+  // Générer un nombre aléatoire
+  function afficherNombreAleatoire() {
+    const min = 5;
+    const max = 30;
+    const nombre = Math.floor(Math.random() * (max - min + 1)) + min;
+    document.getElementById('connectedUsers').textContent = nombre;
+  }
+
+  afficherNombreAleatoire();
+
+  // Déplacement de l'icône
+  const widget = document.getElementById('connected-widget');
+  let offsetX, offsetY, isDragging = false;
+
+  widget.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    offsetX = e.clientX - widget.getBoundingClientRect().left;
+    offsetY = e.clientY - widget.getBoundingClientRect().top;
+    widget.style.transition = 'none';
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (isDragging) {
+      widget.style.left = (e.clientX - offsetX) + 'px';
+      widget.style.top = (e.clientY - offsetY) + 'px';
+      widget.style.right = 'auto';
+      widget.style.bottom = 'auto';
+      widget.style.position = 'fixed';
+    }
+  });
+
+  document.addEventListener('mouseup', function () {
+    isDragging = false;
+    widget.style.transition = '';
+  });
+
+  // Bouton de fermeture
+  document.querySelector('.close-btn').addEventListener('click', function () {
+    widget.remove();
+  });
+</script>

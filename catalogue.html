@@ -1,69 +1,1864 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BoomBook's - Accueil</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    /* 🌐 Paramètres globaux */
-body {
-  margin: 0;
-  padding: 0;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #0c0f1c;
+      color: #f5f5f5;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #f5f5f5;
+    }
+
+    button, .btn {
+      background-color: #7e57c2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover, .btn:hover {
+      background-color: #673ab7;
+    }
+
+    a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0c0f1c;
+      padding: 12px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-icon, .return-icon {
+      font-size: 22px;
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 20px;
+      color: #f5f5f5;
+      position: relative;
+    }
+
+    .icon:hover {
+      color: #7e57c2;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    #menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 220px;
+      height: 100%;
+      background: #1a1d2e;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    #menu.open {
+      left: 0;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #menu ul li {
+      padding: 12px 20px;
+    }
+
+    #menu ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+
+    #menu ul li a:hover {
+      background: #2b2f45;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu-icon {
+        font-size: 20px;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left return-icon"></i></a>
+      <i class="fa-solid fa-bars menu-icon" onclick="toggleMenu()"></i>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon">
+        <i class="fa-solid fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="newsletter.html"><i class="fa-solid fa-envelope"></i> Newsletter</a></li>
+      <li><a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="catalogue.html"><i class="fa-solid fa-book-open"></i> Catalogue</a></li>
+      <li><a href="https://wa.me/message/2HZ5WLZCZZIXK1"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="https://t.me/boombookForms"><i class="fa-brands fa-telegram"></i> Telegram</a></li>
+      <li><a href="#"><i class="fa-solid fa-chalkboard-teacher"></i> Nos Formations</a></li>
+      <li><a href="#"><i class="fa-solid fa-users"></i> Rejoignez-nous</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    function toggleMenu() {
+      menu.classList.toggle("open");
+    }
+
+    document.addEventListener("click", function (event) {
+      const icon = document.querySelector(".menu-icon");
+      const isClickInsideMenu = menu.contains(event.target);
+      const isClickOnIcon = icon.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnIcon) {
+        menu.classList.remove("open");
+      }
+    });
+
+    // Fermer le menu automatiquement quand on clique sur un lien
+    const links = menu.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+      });
+    });
+
+    // Mise à jour du panier
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    function mettreAJourCompteur() {
+      let compteur = document.getElementById("cart-count");
+      compteur.innerText = panier.length;
+      compteur.style.display = panier.length > 0 ? "inline-block" : "none";
+    }
+    mettreAJourCompteur();
+  </script>
+
+</body>
+</html>
+<section class="welcome-section">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Catalogue<span>BoomBook’s</span></h1>
+      <p class="welcome-subtitle">L'antidote de l'ignorance.</p>
+      <p class="welcome-categories">notre catalogue</p>
+    </div>
+  </section>
+  <style>.welcome-section {
+    background: #0c0f1c;
+    padding: 25px 20px 60px;
+    text-align: center;
+    color: #f0f0f0;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 60px;
+  }
+  
+  .welcome-title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .welcome-title span {
+    color: #ff9800;
+  }
+  
+  .welcome-subtitle {
+    font-size: 18px;
+    color: #cccccc;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .welcome-categories {
+    font-size: 16px;
+    color: #bbbbbb;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 28px;
+    }
+  
+    .welcome-subtitle {
+      font-size: 16px;
+    }
+  
+    .welcome-categories {
+      font-size: 14px;
+    }
+  }
+  </style>
+  <section class="info-highlight">
+    <div class="info-box">
+      <div class="info-left">
+        <span class="info-icon"><i class="fas fa-book"></i></span>
+        <span class="info-text">Livres numériques</span>
+        <span class="separator">|</span>
+        <span class="info-icon"><i class="fas fa-download"></i></span>
+        <span class="info-text">Téléchargeables</span>
+      </div>
+      <div class="info-right">
+        <span class="info-icon"><i class="fas fa-users"></i></span>
+        <span class="info-text italic-text">Déjà +12 000 personnes nous font confiance</span>
+      </div>
+    </div>
+  </section>
+  <style>.info-highlight {
+    background: #0c0f1c;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    color: #f0f0f0;
+    font-size: 14px;
+  }
+  
+  .info-left, .info-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+  
+  .separator {
+    color: #888;
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  
+  .italic-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #dddddd;
+  }
+  
+  .info-icon i {
+    color: #a29bfe;
+    font-size: 16px;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 600px) {
+    .info-box {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .info-left, .info-right {
+      justify-content: center;
+    }
+  }
+  </style>
+
+<section id="top-books" style="padding: 60px 20px; background-color: #0c0f1c;">
+    <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px; color: #fff;">📚 LIVRES LES PLUS TÉLÉCHARGÉS</h2>
+  
+    <div class="book-grid">
+      <!-- LIVRE 1 -->
+      <div class="book-card">
+        <img src="images/diable.jpg" alt="Plus malin que le diable">
+        <div class="book-content">
+          <h3>Plus malin que le diable</h3>
+          <p>Une plongée dans les pièges invisibles de votre esprit.</p>
+          <div class="rating" data-note="4.8"></div>
+          <div class="btn-group">
+            <a href="description.html?id=1" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Plus%20malin%20que%20le%20diable" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 2 -->
+      <div class="book-card">
+        <img src="images/habitudes.jpg" alt="Le Pouvoir des Habitudes">
+        <div class="book-content">
+          <h3>Le Pouvoir des Habitudes</h3>
+          <p>Découvrez comment vos routines façonnent votre avenir.</p>
+          <div class="rating" data-note="4.5"></div>
+          <div class="btn-group">
+            <a href="description.html?id=2" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Pouvoir%20des%20habitudes" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 3 -->
+      <div class="book-card">
+        <img src="images/tolteques.jpg" alt="Les Quatre Accords Toltèques">
+        <div class="book-content">
+          <h3>Les Quatre Accords Toltèques</h3>
+          <p>Des principes simples pour transformer votre vie.</p>
+          <div class="rating" data-note="4.6"></div>
+          <div class="btn-group">
+            <a href="description.html?id=3" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Accords%20Toltèques" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 4 -->
+      <div class="book-card">
+        <img src="images/grandeur.jpg" alt="La science de la grandeur">
+        <div class="book-content">
+          <h3>La science de la grandeur</h3>
+          <p>Comment devenir grand en pensée et en action.</p>
+          <div class="rating" data-note="4.9"></div>
+          <div class="btn-group">
+            <a href="description.html?id=4" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Science%20de%20la%20grandeur" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 5 -->
+      <div class="book-card">
+        <img src="images/riches.jpg" alt="Réfléchissez et devenez riche">
+        <div class="book-content">
+          <h3>Réfléchissez et devenez riche</h3>
+          <p>Les secrets de la richesse révélés par Napoleon Hill.</p>
+          <div class="rating" data-note="4.4"></div>
+          <div class="btn-group">
+            <a href="description.html?id=5" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Devenez%20riche" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 6 -->
+      <div class="book-card">
+        <img src="images/solopreneur.jpg" alt="Entreprendre en solo">
+        <div class="book-content">
+          <h3>Entreprendre en solo</h3>
+          <p>Construisez un business rentable sans équipe.</p>
+          <div class="rating" data-note="4.3"></div>
+          <div class="btn-group">
+            <a href="description.html?id=6" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Entreprendre%20en%20solo" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 7 -->
+      <div class="book-card">
+        <img src="images/penseur.jpg" alt="Les Grands Penseurs de l'Économie">
+        <div class="book-content">
+          <h3>Les Grands Penseurs de l'Économie</h3>
+          <p>Les idées qui ont changé le monde économique.</p>
+          <div class="rating" data-note="4.7"></div>
+          <div class="btn-group">
+            <a href="description.html?id=7" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Penseurs%20Économie" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 8 -->
+      <div class="book-card">
+        <img src="images/money.jpg" alt="Économie Monétaire et Financière">
+        <div class="book-content">
+          <h3>Économie Monétaire et Financière</h3>
+          <p>Comprendre les flux de la finance moderne.</p>
+          <div class="rating" data-note="4.2"></div>
+          <div class="btn-group">
+            <a href="description.html?id=8" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Économie%20Monétaire" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 9 -->
+      <div class="book-card">
+        <img src="images/international.jpg" alt="Économie Politique Internationale">
+        <div class="book-content">
+          <h3>Économie Politique Internationale</h3>
+          <p>Les enjeux économiques à l'échelle mondiale.</p>
+          <div class="rating" data-note="4.6"></div>
+          <div class="btn-group">
+            <a href="description.html?id=9" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Économie%20Internationale" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- LIVRE 10 -->
+      <div class="book-card">
+        <img src="images/politique.jpg" alt="Économie Politique">
+        <div class="book-content">
+          <h3>Économie Politique</h3>
+          <p>Les fondements de la pensée politique économique.</p>
+          <div class="rating" data-note="4.1"></div>
+          <div class="btn-group">
+            <a href="description.html?id=10" class="btn">Acheter</a>
+            <a href="https://wa.me/674246355?text=Achat%20-%20Économie%20Politique" class="btn whatsapp">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .book-card {
+      background-color: #1a1d2e;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+  
+    .book-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+  
+    .book-content {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .book-card h3 {
+      margin-bottom: 10px;
+      color: #ff9800;
+      font-size: 20px;
+    }
+  
+    .book-card p {
+      color: #ccc;
+      font-size: 14px;
+      flex-grow: 1;
+    }
+  
+    .rating {
+      margin: 10px 0;
+      color: gold;
+      font-size: 16px;
+    }
+  
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+  
+    .btn {
+      background-color: #7e57c2;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+  
+    .btn:hover {
+      background-color: #673ab7;
+    }
+  
+    .btn.whatsapp {
+      background-color: #25D366;
+    }
+  
+    .btn.whatsapp:hover {
+      background-color: #1ebe56;
+    }
+  </style>
+  
+  <script>
+    document.querySelectorAll('.rating').forEach(el => {
+      const note = parseFloat(el.getAttribute('data-note'));
+      const fullStars = Math.floor(note);
+      const halfStar = note % 1 >= 0.5 ? 1 : 0;
+      let stars = '★'.repeat(fullStars);
+      if (halfStar) stars += '½';
+      stars = stars.padEnd(5, '☆');
+      el.innerHTML = `${stars} (${note})`;
+    });
+  </script>
+  
+  <section class="books-section">
+    <div class="books-header">
+      <h2 class="section-title">📚 NOS LIVRES</h2>
+      <center><p class="section-subtitle">*Cliquez sur une catégorie pour voir l'ensemble des livres*</p></center>
+    </div>
+  
+    <div class="categories-wrapper">
+      <h3 class="categories-title">CATÉGORIES DE LIVRES</h3>
+      <!-- Catégories principales -->
+<div class="categories-grid" id="categoriesGrid">
+<a href="#" class="category-btn">Développement personnel</a>
+<a href="#" class="category-btn">Romans</a>
+<a href="#" class="category-btn">Finance</a>
+<a href="#" class="category-btn">Spiritualité</a>
+<a href="#" class="category-btn">Santé & Bien-être</a>
+<a href="#" class="category-btn">Business & Entrepreneuriat</a>
+</div>
+
+<!-- Catégories supplémentaires -->
+<div class="categories-grid extra-categories hidden">
+<a href="#" class="category-btn">Économie</a>
+<a href="#" class="category-btn">Technologie</a>
+<a href="#" class="category-btn">Éducation</a>
+<a href="#" class="category-btn">Sciences Sociales</a>
+<a href="#" class="category-btn">Politique</a>
+</div>
+
+      </div>
+  
+      <button id="toggleMoreBtn" class="see-more-btn">Voir plus</button>
+    </div>
+  </section>
+<style>.books-section {
+background-color: #0c0f1c;
+color: #f2f2f2;
+padding: 60px 20px;
+font-family: 'Open Sans', sans-serif;
+}
+
+.books-header {
+text-align: left;
+margin-bottom: 30px;
+}
+
+.section-title {
+font-size: 28px;
+font-weight: bold;
+color: #ffffff;
+margin-bottom: 8px;
+font-family: 'Montserrat', sans-serif;
+}
+
+.section-subtitle {
+font-size: 14px;
+font-style: italic;
+color: #cccccc;
+}
+
+.categories-wrapper {
+background: #111426;
+padding: 30px;
+border-radius: 20px;
+border: 2px solid #283593;
+box-shadow: 0 0 15px rgba(66, 66, 66, 0.2);
+max-width: 1100px;
+margin: auto;
+}
+
+.categories-title {
+font-size: 18px;
+color: #b3e5fc;
+margin-bottom: 20px;
+text-align: center;
+font-weight: bold;
+font-family: 'Montserrat', sans-serif;
+}
+
+.categories-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+justify-content: center;
+}
+
+.category-btn {
+background: #8e44ad;
+color: #fff;
+padding: 12px 18px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+transition: background 0.3s ease;
+}
+
+.category-btn:hover {
+background: #9b59b6;
+}
+
+.extra-categories {
+margin-top: 10px;
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+justify-content: center;
+transition: all 0.3s ease;
+}
+
+.hidden {
+display: none !important;
+}
+
+.see-more-btn {
+margin-top: 20px;
+background-color: #512da8;
+color: white;
+border: none;
+padding: 10px 20px;
+font-size: 14px;
+border-radius: 10px;
+cursor: pointer;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.see-more-btn:hover {
+background-color: #673ab7;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+.section-title {
+  font-size: 22px;
+}
+
+.categories-grid {
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-btn {
+  width: 90%;
+  text-align: center;
+}
+}
+</style>    
+<script>
+const btn = document.getElementById('toggleMoreBtn');
+const extraCats = document.querySelector('.extra-categories');
+let isVisible = false;
+
+btn.addEventListener('click', () => {
+  isVisible = !isVisible;
+  extraCats.classList.toggle('hidden');
+  btn.textContent = isVisible ? 'Voir moins' : 'Voir plus';
+});
+</script>
+
+<section class="quote-marquee">
+<div class="quote-track">
+  <span>📖 "Un esprit bien nourri commence par une bibliothèque bien remplie." – BoomBook’s</span>
+  <span>📚 "Les livres numériques sont les clés discrètes d’un avenir brillant." – BoomBook’s</span>
+  <span>💡 "Lire, c’est vivre mille vies. Ne lire pas, c’est en gaspiller une." – Anonyme</span>
+  <span>🔥 "Le savoir n’est plus un luxe, c’est un clic." – BoomBook’s</span>
+  <span>🌍 "Celui qui lit ne sera jamais seul dans un monde d’idées." – Anonyme</span>
+  <span>📥 "Un livre numérique = un pas vers l’autonomie." – BoomBook’s</span>
+</div>
+</section>
+<style>.quote-marquee {
+background: linear-gradient(90deg, #0f172a, #1e293b); /* bleu nuit */
+color: #f5f5f5; /* texte blanc cassé */
+overflow: hidden;
+white-space: nowrap;
+font-family: 'Open Sans', sans-serif;
+padding: 12px 0;
+border-top: 2px solid #6d28d9; /* violet clair */
+border-bottom: 2px solid #6d28d9;
+}
+
+.quote-track {
+display: inline-block;
+padding-left: 100%;
+animation: scrollQuotes 35s linear infinite;
+}
+
+.quote-track span {
+display: inline-block;
+margin-right: 60px;
+font-size: 16px;
+font-style: italic;
+}
+
+@keyframes scrollQuotes {
+0% {
+  transform: translateX(0%);
+}
+100% {
+  transform: translateX(-100%);
+}
+}
+
+@media (max-width: 600px) {
+.quote-track span {
+  font-size: 14px;
+  margin-right: 40px;
+}
+}
+</style>
+<section class="books-section">
+<div class="books-header">
+  <h2 class="section-title">🎓 NOS FORMATIONS</h2>
+  <center><p class="section-subtitle">*Cliquez sur une catégorie pour voir les formations disponibles*</p></center>
+</div>
+
+<div class="categories-wrapper">
+
+  <h3 class="categories-title">CATÉGORIES DE FORMATIONS</h3>
+
+  <!-- Catégories principales -->
+  <div class="categories-grid" id="formationsGrid">
+    <a href="#" class="category-btn">Marketing Digital</a>
+    <a href="#" class="category-btn">Entrepreneuriat</a>
+    <a href="#" class="category-btn">Développement Personnel</a>
+    <a href="#" class="category-btn">E-commerce</a>
+    <a href="#" class="category-btn">Productivité</a>
+    <a href="#" class="category-btn">Design Graphique</a>
+  </div>
+
+  <!-- Catégories supplémentaires -->
+  <div class="categories-grid extra-formations hidden">
+    <a href="#" class="category-btn">Réseaux Sociaux</a>
+    <a href="#" class="category-btn">Gestion de Projet</a>
+    <a href="#" class="category-btn">Finances Personnelles</a>
+    <a href="#" class="category-btn">Développement Web</a>
+    <a href="#" class="category-btn">Copywriting</a>
+  </div>
+
+  <button id="toggleMoreFormationsBtn" class="see-more-btn">Voir plus</button>
+</div>
+</section>
+<style>.books-section {
+background-color: #0c0f1c;
+color: #f2f2f2;
+padding: 60px 20px;
+font-family: 'Open Sans', sans-serif;
+}
+
+.books-header {
+text-align: left;
+margin-bottom: 30px;
+}
+
+.section-title {
+font-size: 28px;
+font-weight: bold;
+color: #ffffff;
+margin-bottom: 8px;
+font-family: 'Montserrat', sans-serif;
+}
+
+.section-subtitle {
+font-size: 14px;
+font-style: italic;
+color: #cccccc;
+}
+
+.categories-wrapper {
+background: #111426;
+padding: 30px;
+border-radius: 20px;
+border: 2px solid #283593;
+box-shadow: 0 0 15px rgba(66, 66, 66, 0.2);
+max-width: 1100px;
+margin: auto;
+}
+
+.categories-title {
+font-size: 18px;
+color: #b3e5fc;
+margin-bottom: 20px;
+text-align: center;
+font-weight: bold;
+font-family: 'Montserrat', sans-serif;
+}
+
+.categories-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+justify-content: center;
+}
+
+.category-btn {
+background: #8e44ad;
+color: #fff;
+padding: 12px 18px;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+transition: background 0.3s ease;
+}
+
+.category-btn:hover {
+background: #9b59b6;
+}
+
+.extra-formations {
+margin-top: 10px;
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+justify-content: center;
+transition: all 0.3s ease;
+}
+
+.hidden {
+display: none !important;
+}
+
+.see-more-btn {
+margin-top: 20px;
+background-color: #512da8;
+color: white;
+border: none;
+padding: 10px 20px;
+font-size: 14px;
+border-radius: 10px;
+cursor: pointer;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.see-more-btn:hover {
+background-color: #673ab7;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+.section-title {
+  font-size: 22px;
+}
+
+.categories-grid {
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-btn {
+  width: 90%;
+  text-align: center;
+}
+}
+</style>
+<script>const btnFormations = document.getElementById('toggleMoreFormationsBtn');
+const extraFormations = document.querySelector('.extra-formations');
+let isFormationsVisible = false;
+
+btnFormations.addEventListener('click', () => {
+  isFormationsVisible = !isFormationsVisible;
+  extraFormations.classList.toggle('hidden');
+  btnFormations.textContent = isFormationsVisible ? 'Voir moins' : 'Voir plus';
+});
+</script>
+
+<section class="receive-section">
+<div class="receive-wrapper">
+  <h2 class="receive-title">📦 COMMENT RECEVOIR VOTRE LIVRE OU FORMATION ?</h2>
+  <hr class="separator">
+
+  <p class="receive-step">
+    1️⃣ Choisissez le <strong>livre</strong> ou la <strong>formation</strong> qui vous intéresse sur notre site.
+  </p>
+  <p class="receive-step">
+    2️⃣ Cliquez sur le bouton <strong>"Acheter"</strong> et procédez au <strong>paiement sécurisé</strong> via notre partenaire <strong>Lygos</strong>.
+  </p>
+  <p class="receive-step">
+    3️⃣ Lors du paiement, <strong>assurez-vous d’entrer une adresse e-mail correcte</strong> : c’est à cette adresse que vous recevrez votre contenu.
+  </p>
+  <p class="receive-step">
+    4️⃣ Une fois le paiement confirmé, vous recevrez <strong>automatiquement par email</strong> un lien de téléchargement pour votre <strong>livre numérique ou votre formation</strong>.
+  </p>
+  <p class="receive-step">
+    5️⃣ Si vous ne voyez pas l’email immédiatement, <strong>vérifiez vos spams ou courriers indésirables</strong>.
+  </p>
+
+  <hr class="separator">
+  <p class="receive-info">
+    💡 N’oubliez pas : toutes les livraisons sont 100% numériques, rapides et automatiques. Vous n’avez rien à attendre par la poste !
+  </p>
+</div>
+</section>
+<style>
+.receive-section {
+  background-color: #0c0f1c;
+  padding: 60px 20px;
   font-family: 'Open Sans', sans-serif;
-  background-color: #0c0f1c; /* Fond bleu nuit */
-  color: #f5f5f5; /* Texte blanc cassé */
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
 }
 
-/* 🎯 Titres principaux */
-h1, h2, h3, h4 {
+.receive-wrapper {
+  background-color: #111426;
+  border: 2px solid #3f51b5;
+  border-radius: 15px;
+  max-width: 900px;
+  width: 100%;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.receive-title {
+  font-size: 24px;
+  color: #ffffff;
   font-family: 'Montserrat', sans-serif;
-  color: #f5f5f5;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* 🟣 Boutons principaux */
-button, .btn {
-  background-color: #7e57c2;
-  color: white;
-  padding: 12px 20px;
+.separator {
   border: none;
-  border-radius: 6px;
+  height: 2px;
+  background-color: #3f51b5;
+  margin: 20px 0;
+}
+
+.receive-step {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: #dddddd;
+}
+
+.receive-info {
+  font-style: italic;
+  font-size: 15px;
+  color: #bbbbbb;
+  text-align: center;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+  .receive-title {
+    font-size: 20px;
+  }
+
+  .receive-step {
+    font-size: 15px;
+  }
+
+  .receive-info {
+    font-size: 14px;
+  }
+}
+</style>
+
+<section class="whatsapp-contact-section">
+  <div class="whatsapp-container">
+    <h2 class="whatsapp-title">📲 Vous préférez recevoir votre livre via WhatsApp ?</h2>
+    <p class="whatsapp-text">
+      Pas de souci ! Si vous ne souhaitez pas utiliser votre adresse email ou que vous avez des difficultés à recevoir votre fichier, vous pouvez <strong>nous contacter directement sur WhatsApp</strong>. Nous vous enverrons votre livre ou votre formation manuellement, rapidement et avec plaisir !
+    </p>
+
+    <a href="https://wa.me/237674246355" target="_blank" class="whatsapp-button">
+      📥 Recevoir mon livre via WhatsApp
+    </a>
+  </div>
+</section>
+<style>.whatsapp-contact-section {
+  background-color: #0c0f1c;
+  padding: 60px 20px;
+  color: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.whatsapp-container {
+  background: #111426;
+  border: 2px solid #4caf50;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 255, 100, 0.1);
+}
+
+.whatsapp-title {
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.whatsapp-text {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #dcdcdc;
+  line-height: 1.6;
+}
+
+.whatsapp-button {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
+  text-decoration: none;
   transition: background 0.3s ease;
 }
 
-button:hover, .btn:hover {
+.whatsapp-button:hover {
+  background-color: #1ebd59;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+  .whatsapp-title {
+    font-size: 18px;
+  }
+
+  .whatsapp-text {
+    font-size: 15px;
+  }
+
+  .whatsapp-button {
+    width: 90%;
+    font-size: 15px;
+  }
+}
+</style>
+
+<section class="animated-banner">
+<div class="scrolling-text">
+  <span>📚 Lire, c’est s’élever. 💡 Chaque page lue vous rapproche de votre liberté. 🚀 Le savoir est votre plus grand pouvoir. 💼 BoomBook’s, l’antidote contre l’ignorance. ✊🏽 Investis dans un livre, récolte une vie meilleure.</span>
+</div>
+</section>
+<style>.animated-banner {
+background: linear-gradient(to right, #0c0f1c, #111426);
+color: #f0f0f0;
+padding: 12px 0;
+overflow: hidden;
+position: relative;
+font-family: 'Montserrat', sans-serif;
+border-top: 2px solid #4caf50;
+border-bottom: 2px solid #4caf50;
+}
+
+.scrolling-text {
+white-space: nowrap;
+display: inline-block;
+animation: scrollBanner 25s linear infinite;
+font-size: 16px;
+padding-left: 100%;
+}
+
+@keyframes scrollBanner {
+0% {
+  transform: translateX(0%);
+}
+100% {
+  transform: translateX(-100%);
+}
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+.scrolling-text {
+  font-size: 14px;
+}
+}
+</style>
+
+<!-- SECTION AVIS CLIENT -->
+<section style="background-color: #0c0f1c;">
+<div class="avis-container">
+  <h2 class="avis-title">🗣️ Donnez votre avis</h2>
+  <p class="avis-subtitle">Votre retour compte énormément pour nous !</p>
+
+  <form action="https://formspree.io/f/meoanzww" method="POST" class="avis-form" onsubmit="saveAvisLocally(); alert('✅ Merci pour votre avis !');">
+    
+    <label for="note">Votre note :</label>
+    <div class="stars" id="starRating">
+      <span onclick="rate(1)">★</span>
+      <span onclick="rate(2)">★</span>
+      <span onclick="rate(3)">★</span>
+      <span onclick="rate(4)">★</span>
+      <span onclick="rate(5)">★</span>
+    </div>
+    <input type="hidden" id="note" name="Note">
+
+    <label for="avis">Votre avis :</label>
+    <textarea id="avis" name="Avis" rows="5" placeholder="Écrivez votre avis ici..." required></textarea>
+
+    <label for="nom">Votre nom :</label>
+    <input type="text" id="nom" name="Nom" placeholder="Votre nom" required>
+
+    <label for="email">Votre email :</label>
+    <input type="email" id="email" name="Email" placeholder="exemple@mail.com" required>
+
+    <button type="submit">Envoyer</button>
+  </form>
+</div>
+</section>
+
+<style>
+.avis-container {
+  background-color: #12152a;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(126, 87, 194, 0.4);
+}
+
+.avis-title {
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  color: #f5f5f5;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.avis-subtitle {
+  text-align: center;
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.avis-form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+  color: #f5f5f5;
+}
+
+.avis-form input,
+.avis-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #2c2f40;
+  border-radius: 8px;
+  background-color: #1a1d2e;
+  color: #f5f5f5;
+  font-size: 16px;
+}
+
+.avis-form button {
+  margin-top: 25px;
+  background-color: #7e57c2;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.avis-form button:hover {
   background-color: #673ab7;
 }
 
-/* 🔶 Détails ou icônes secondaires */
-.highlight, .icon-accent {
+.stars span {
+  font-size: 28px;
+  cursor: pointer;
+  color: #555;
+  margin-right: 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.stars span.active {
+  color: #ff9800; /* orange accent */
+}
+
+@media (max-width: 600px) {
+  .avis-container {
+    padding: 20px;
+  }
+  .avis-title {
+    font-size: 24px;
+  }
+}
+</style>
+
+<script>
+function rate(note) {
+  document.getElementById('note').value = note;
+  const stars = document.querySelectorAll('#starRating span');
+  stars.forEach((star, index) => {
+    star.classList.toggle('active', index < note);
+  });
+}
+
+function saveAvisLocally() {
+  const nom = document.getElementById('nom').value;
+  const email = document.getElementById('email').value;
+  const avis = document.getElementById('avis').value;
+  localStorage.setItem('boom_nom', nom);
+  localStorage.setItem('boom_email', email);
+  localStorage.setItem('boom_avis', avis);
+}
+
+window.onload = function () {
+  if (localStorage.getItem('boom_nom')) {
+    document.getElementById('nom').value = localStorage.getItem('boom_nom');
+  }
+  if (localStorage.getItem('boom_email')) {
+    document.getElementById('email').value = localStorage.getItem('boom_email');
+  }
+  if (localStorage.getItem('boom_avis')) {
+    document.getElementById('avis').value = localStorage.getItem('boom_avis');
+  }
+}
+</script>
+
+<!-- SECTION AFFICHAGE DES AVIS -->
+<section style="background-color: #0c0f1c;">
+<div class="avis-display-container">
+  <h2 class="avis-title">📝 Vos avis</h2>
+  <div id="avisList" class="avis-list">
+    <!-- Les avis s’afficheront ici -->
+  </div>
+</div>
+</section>
+
+<style>
+.avis-display-container {
+  background-color: #12152a;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 0 20px rgba(126, 87, 194, 0.4);
+}
+
+.avis-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.avis-card {
+  background-color: #1a1d2e;
+  padding: 20px;
+  border-radius: 12px;
+  color: #f5f5f5;
+  box-shadow: 0 0 10px rgba(126, 87, 194, 0.2);
+}
+
+.avis-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
   color: #ff9800;
 }
 
-/* Liens */
-a {
+.avis-card p {
+  font-size: 15px;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.avis-note {
+  color: #ff9800;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .avis-display-container {
+    padding: 20px;
+  }
+}
+</style>
+
+<script>
+// Charger les avis depuis le localStorage
+window.onload = function () {
+  const nom = localStorage.getItem('boom_nom');
+  const avis = localStorage.getItem('boom_avis');
+  const note = document.getElementById('note')?.value || "5";
+
+  if (nom && avis) {
+    const avisHTML = `
+      <div class="avis-card">
+        <h3>${nom}</h3>
+        <div class="avis-note">Note : ${"★".repeat(note)}</div>
+        <p>${avis}</p>
+      </div>
+    `;
+    document.getElementById('avisList').innerHTML += avisHTML;
+  }
+};
+</script>
+
+<!-- SECTION SUIVEZ-NOUS -->
+<section class="suivez-nous">
+<h2>📲 Suivez-nous</h2>
+<p>Restez connectés sur nos réseaux pour ne rien manquer !</p>
+<div class="social-icons">
+  <a href="https://facebook.com/tonpage" target="_blank" class="icon fb" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://tiktok.com/@tonprofil" target="_blank" class="icon tiktok" aria-label="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </a>
+  <a href="https://t.me/tontelegram" target="_blank" class="icon telegram" aria-label="Telegram">
+    <i class="fab fa-telegram-plane"></i>
+  </a>
+  <a href="https://wa.me/237XXXXXXXX" target="_blank" class="icon whatsapp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+</section>
+
+<!-- STYLE -->
+<style>
+.suivez-nous {
+  background-color: #11152a;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 3px solid #7e57c2;
+}
+
+.suivez-nous h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  margin-bottom: 10px;
   color: #f5f5f5;
+}
+
+.suivez-nous p {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icons .icon {
+  background-color: #7e57c2;
+  color: white;
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease;
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+.social-icons .icon:hover {
+  background-color: #673ab7;
 }
 
-/* Sections (exemples) */
-section {
-  padding: 40px 20px;
-}
+/* Icônes spécifiques (optionnel pour ajuster) */
+.icon.fb   { background-color: #3b5998; }
+.icon.tiktok { background-color: #010101; }
+.icon.telegram { background-color: #0088cc; }
+.icon.whatsapp { background-color: #25d366; }
 
-/* Responsive base */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+.icon.fb:hover       { background-color: #2d4373; }
+.icon.tiktok:hover   { background-color: #111; }
+.icon.telegram:hover { background-color: #007ab8; }
+.icon.whatsapp:hover { background-color: #1ebc59; }
+
+@media (max-width: 500px) {
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icons .icon {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 }
+</style>
 
-      </style>
-</head>
+<footer>
+<div class="footer-container">
+
+    <!-- Catégorie 1 : À PROPOS -->
+    <div class="footer-column">
+        <h3>✔ À PROPOS</h3>
+        <ul>
+            <li><a href="#">Conditions générales</a></li>
+            <li><a href="#">Données personnelles</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Avis BoomBook's</a></li>
+        </ul>
+    </div>
+
+    <!-- Catégorie 2 : AIDE -->
+    <div class="footer-column">
+        <h3>✔ AIDE</h3>
+        <ul>
+            <li><a href="#">Une question ?</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="#">Services BoomBook's</a></li>
+        </ul>
+    </div>
+
+    <!-- Catégorie 3 : LE GROUPE BoomBook's -->
+    <div class="footer-column">
+        <h3>✔ LE GROUPE BoomBook's</h3>
+        <ul>
+            <li><a href="#">Qui sommes-nous ?</a></li>
+            <li><a href="#">Groupes BoomBook's</a></li>
+            <li><a href="#">Chaînes BoomBook's</a></li>
+        </ul>
+    </div>
+
+    <!-- Catégorie 4 : PARTENAIRES -->
+    <div class="footer-column">
+        <h3>✔ PARTENAIRES</h3>
+        <ul>
+            <li><a href="#">Tik&Pay</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Copyright -->
+<div class="footer-bottom">
+    <p>© 2025 BoomBook's. Tous droits réservés.</p>
+</div>
+</footer>
+<style>/* Footer */
+footer {
+background-color: #11152a;
+color: white;
+padding: 40px 20px;
+font-family: 'Arial', sans-serif;
+}
+
+/* Conteneur du footer */
+.footer-container {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+max-width: 1100px;
+margin: auto;
+padding-bottom: 20px;
+}
+
+/* Colonne du footer */
+.footer-column {
+flex: 1;
+min-width: 220px;
+margin-bottom: 20px;
+}
+
+.footer-column h3 {
+font-size: 18px;
+margin-bottom: 10px;
+position: relative;
+}
+
+.footer-column ul {
+list-style: none;
+padding: 0;
+}
+
+.footer-column ul li {
+margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+text-decoration: none;
+color: #aaa;
+transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+color: #fff;
+text-decoration: underline;
+}
+
+/* Copyright */
+.footer-bottom {
+text-align: center;
+padding-top: 20px;
+border-top: 1px solid #333;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+.footer-container {
+    flex-direction: column;
+    text-align: center;
+}
+}
+/* Effet d'apparition fluide */
+footer {
+opacity: 0;
+transform: translateY(50px);
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Apparition quand visible */
+footer.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+</style>
+<script>document.addEventListener("DOMContentLoaded", function () {
+const footer = document.querySelector("footer");
+
+function checkFooterVisibility() {
+    const footerPosition = footer.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (footerPosition < screenHeight - 50) {
+        footer.classList.add("visible");
+    }
+}
+
+window.addEventListener("scroll", checkFooterVisibility);
+checkFooterVisibility(); // Vérifier au chargement de la page
+});
+</script>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+let searchInput = document.getElementById("searchInput");
+let books = document.querySelectorAll(".book-item");
+
+if (searchInput && books.length > 0) {
+    searchInput.addEventListener("input", function () {
+        let query = this.value.toLowerCase().trim();
+
+        books.forEach(book => {
+            let titleElement = book.querySelector(".book-title");
+
+            if (titleElement) {
+                let title = titleElement.textContent.toLowerCase();
+                book.style.display = title.includes(query) ? "block" : "none";
+            }
+        });
+    });
+} else {
+    console.error("Erreur : Vérifie que l'ID 'searchInput' existe et que les livres ont la classe 'book-item'.");
+}
+});
+</script>
+
+<!-- Font Awesome (déjà inclus dans ton head mais on le laisse ici au cas où) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- SECTION MOYENS DE PAIEMENT -->
+<section class="paiement">
+<h2>💳 Moyens de Paiement</h2>
+<p>Choisissez votre solution préférée</p>
+<div class="payment-icons">
+  <div class="icon-box"><i class="fab fa-cc-visa"></i><span>Visa</span></div>
+  <div class="icon-box"><i class="fab fa-cc-mastercard"></i><span>Mastercard</span></div>
+  <div class="icon-box"><i class="fab fa-cc-paypal"></i><span>PayPal</span></div>
+  <div class="icon-box"><i class="fas fa-mobile-alt"></i><span>Orange</span></div>
+  <div class="icon-box"><i class="fas fa-mobile-alt"></i><span>MTN</span></div>
+  <div class="icon-box"><i class="fas fa-wave-square"></i><span>Wave</span></div>
+  <div class="icon-box"><i class="fas fa-signal"></i><span>Moov</span></div>
+  <div class="icon-box"><i class="fas fa-sim-card"></i><span>Airtel</span></div>
+</div>
+</section>
+
+<!-- STYLE -->
+<style>
+.paiement {
+  background-color: #11152a;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 3px solid #7e57c2;
+}
+
+.paiement h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #f5f5f5;
+}
+
+.paiement p {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.icon-box {
+  background-color: #0c0f1c;
+  border: 2px solid #7e57c2;
+  border-radius: 10px;
+  padding: 15px;
+  width: 110px;
+  text-align: center;
+  color: #f5f5f5;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon-box i {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+  color: #ff9800;
+}
+
+.icon-box span {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.icon-box:hover {
+  background-color: #1a1f33;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .icon-box {
+    width: 90px;
+    padding: 10px;
+  }
+
+  .icon-box i {
+    font-size: 22px;
+  }
+
+  .icon-box span {
+    font-size: 13px;
+  }
+
+  .paiement h2 {
+    font-size: 22px;
+  }
+}
+</style>
+
+<div id="connected-widget">
+<i class="fa fa-users icon"></i>
+<span id="connectedUsers">0</span> en ligne
+<span class="close-btn">&times;</span>
+</div>
+<style>
+#connected-widget {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: #1a1d2e;
+color: #f5f5f5;
+padding: 10px 16px;
+border-radius: 20px;
+font-weight: bold;
+font-size: 14px;
+display: flex;
+align-items: center;
+gap: 8px;
+box-shadow: 0 0 8px rgba(126, 87, 194, 0.4);
+cursor: move;
+z-index: 9999;
+user-select: none;
+max-width: 90%;
+flex-wrap: wrap;
+}
+
+#connected-widget .icon {
+color: #ff9800;
+font-size: 18px;
+}
+
+#connected-widget .close-btn {
+margin-left: auto;
+cursor: pointer;
+color: #ccc;
+font-size: 16px;
+}
+
+#connected-widget .close-btn:hover {
+color: #f44336;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+#connected-widget {
+  bottom: 10px;
+  right: 10px;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 16px;
+}
+
+#connected-widget .icon {
+  font-size: 16px;
+}
+
+#connected-widget .close-btn {
+  font-size: 14px;
+}
+}
+
+</style>
+<script>
+// Générer un nombre aléatoire
+function afficherNombreAleatoire() {
+  const min = 5;
+  const max = 30;
+  const nombre = Math.floor(Math.random() * (max - min + 1)) + min;
+  document.getElementById('connectedUsers').textContent = nombre;
+}
+
+afficherNombreAleatoire();
+
+// Déplacement de l'icône
+const widget = document.getElementById('connected-widget');
+let offsetX, offsetY, isDragging = false;
+
+widget.addEventListener('mousedown', function (e) {
+  isDragging = true;
+  offsetX = e.clientX - widget.getBoundingClientRect().left;
+  offsetY = e.clientY - widget.getBoundingClientRect().top;
+  widget.style.transition = 'none';
+});
+
+document.addEventListener('mousemove', function (e) {
+  if (isDragging) {
+    widget.style.left = (e.clientX - offsetX) + 'px';
+    widget.style.top = (e.clientY - offsetY) + 'px';
+    widget.style.right = 'auto';
+    widget.style.bottom = 'auto';
+    widget.style.position = 'fixed';
+  }
+});
+
+document.addEventListener('mouseup', function () {
+  isDragging = false;
+  widget.style.transition = '';
+});
+
+// Bouton de fermeture
+document.querySelector('.close-btn').addEventListener('click', function () {
+  widget.remove();
+});
+</script>

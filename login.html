@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil BoomBook's</title>
+  <title>Connexion / Inscription</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="profile-container">
-    <h1 id="welcomeMsg">Bienvenue !</h1>
-    <a href="index.html" class="btn-retour">Retour à l'accueil</a>
+  <div class="auth-container">
+    <h2>Connexion ou Inscription</h2>
+    <form id="authForm">
+      <label for="username">Votre prénom :</label>
+      <input type="text" id="username" required placeholder="Entrez votre prénom...">
+      <button type="submit">Se connecter</button>
+    </form>
   </div>
 
-  <script>
-    const username = localStorage.getItem("boombooksUser");
-    const message = username ? `Bienvenue Mr ${username} !` : "Bienvenue sur votre profil";
-    document.getElementById("welcomeMsg").textContent = message;
-  </script>
+  <script src="auth.js"></script>
 </body>
 </html>
 <script>document.getElementById('authForm').addEventListener('submit', function(e) {
