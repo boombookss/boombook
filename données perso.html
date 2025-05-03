@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Données Personnelles | BoomBook’s</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0c0f1c;
+      color: #f0f0f0;
+    }
+
+    .header, .footer {
+      background-color: #0c0f1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .icon {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+
+    .content-wrapper {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .content-wrapper h1 {
+      font-size: 30px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .content-wrapper h2 {
+      font-size: 22px;
+      color: #ff9800;
+      margin-top: 30px;
+    }
+
+    .content-wrapper p {
+      line-height: 1.6;
+      font-size: 16px;
+      color: #cccccc;
+      margin-bottom: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 40px;
+      padding: 20px 10px;
+    }
+
+    @media (max-width: 600px) {
+      .header, .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .content-wrapper {
+        padding: 20px 15px;
+      }
+
+      .content-wrapper h1 {
+        font-size: 24px;
+      }
+
+      .content-wrapper h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left icon"></i></a>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon"><i class="fa-solid fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <!-- Contenu -->
+  <section class="content-wrapper">
+    <h1>Données Personnelles</h1>
+
+    <h2>1. Collecte des données</h2>
+    <p>Nous collectons uniquement les données nécessaires pour le traitement de vos commandes : nom, adresse email et numéro de téléphone. Ces données sont recueillies lors de vos achats ou de votre inscription à notre newsletter.</p>
+
+    <h2>2. Utilisation des données</h2>
+    <p>Les informations collectées sont utilisées pour assurer le bon déroulement de la commande, vous contacter en cas de besoin, et vous envoyer des informations pertinentes concernant BoomBook’s.</p>
+
+    <h2>3. Conservation des données</h2>
+    <p>Vos données sont conservées en toute sécurité pendant une durée n’excédant pas celle nécessaire aux finalités pour lesquelles elles sont collectées.</p>
+
+    <h2>4. Partage des données</h2>
+    <p>Nous ne vendons ni ne partageons vos données personnelles avec des tiers sans votre consentement, sauf obligation légale.</p>
+
+    <h2>5. Sécurité</h2>
+    <p>Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, perte ou destruction.</p>
+
+    <h2>6. Droit d’accès et de suppression</h2>
+    <p>Conformément à la législation en vigueur, vous avez le droit d’accéder à vos données personnelles, de les rectifier ou de demander leur suppression. Pour exercer ce droit, veuillez nous contacter via WhatsApp ou Telegram.</p>
+
+    <h2>7. Consentement</h2>
+    <p>En utilisant notre site, vous acceptez notre politique de traitement des données personnelles telle que décrite ici.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 BoomBook’s. Tous droits réservés.
+  </footer>
+</body>
+</html>

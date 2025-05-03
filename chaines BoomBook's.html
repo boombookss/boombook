@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chaînes BoomBook’s</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0c0f1c;
+      color: #f0f0f0;
+    }
+
+    .header, .footer {
+      background-color: #0c0f1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .icon {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+
+    .content-wrapper {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #1e2329;
+      border-radius: 10px;
+      width: 250px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: #ff9800;
+    }
+
+    .card p {
+      margin-top: 10px;
+      color: #cccccc;
+      font-size: 16px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 40px;
+      padding: 20px 10px;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .card {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left icon"></i></a>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon"><i class="fa-solid fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <!-- Contenu -->
+  <section class="content-wrapper">
+    <h1>Nos Chaînes</h1>
+    <p style="color: #cccccc; font-size: 16px;">Cliquez sur une des cartes ci-dessous pour accéder à nos chaînes YouTube, Facebook et plus encore. Suivez-nous pour rester à jour avec nos contenus et actualités.</p>
+
+    <div class="card-container">
+      <!-- Carte YouTube -->
+      <a href="https://www.youtube.com/channel/your-channel-link" target="_blank" class="card">
+        <i class="fa-brands fa-youtube"></i>
+        <p>Suivre notre chaîne YouTube</p>
+      </a>
+
+      <!-- Carte Facebook -->
+      <a href="https://www.facebook.com/your-facebook-page-link" target="_blank" class="card">
+        <i class="fa-brands fa-facebook"></i>
+        <p>Suivre notre page Facebook</p>
+      </a>
+
+      <!-- Carte Instagram -->
+      <a href="https://www.instagram.com/your-instagram-page-link" target="_blank" class="card">
+        <i class="fa-brands fa-instagram"></i>
+        <p>Suivre notre page Instagram</p>
+      </a>
+
+      <!-- Carte Twitter -->
+      <a href="https://twitter.com/your-twitter-handle" target="_blank" class="card">
+        <i class="fa-brands fa-twitter"></i>
+        <p>Suivre notre compte Twitter</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 BoomBook’s. Tous droits réservés.
+  </footer>
+
+</body>
+</html>

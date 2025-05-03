@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoomBook's - Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #0c0f1c;
+      color: #f5f5f5;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #f5f5f5;
+    }
+
+    button, .btn {
+      background-color: #7e57c2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover, .btn:hover {
+      background-color: #673ab7;
+    }
+
+    a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0c0f1c;
+      padding: 12px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-icon, .return-icon {
+      font-size: 22px;
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 20px;
+      color: #f5f5f5;
+      position: relative;
+    }
+
+    .icon:hover {
+      color: #7e57c2;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    #menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 220px;
+      height: 100%;
+      background: #1a1d2e;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    #menu.open {
+      left: 0;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #menu ul li {
+      padding: 12px 20px;
+    }
+
+    #menu ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+
+    #menu ul li a:hover {
+      background: #2b2f45;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu-icon {
+        font-size: 20px;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+    }
+  </style>
+  <style>.alert-banner {
+    background-color: #7f00ff; /* Violet */
+    color: #f8f8f5; /* Blanc cassé */
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    z-index: 999;
+  }
+  
+  .alert-banner::before {
+    content: attr(data-text);
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: scrollBanner 15s linear infinite;
+    padding-left: 100%;
+  }
+  
+  @keyframes scrollBanner {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Responsive ajustement */
+  @media (max-width: 600px) {
+    .alert-banner {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  }
+  </style>
+</head>
+<section>
+<body>
+    <div class="urgent-message">
+        ⚠️ Urgence : Notre site sera en maintenance ce soir de 22h à 23h.
+      </div>
+      <style>
+        .urgent-message {
+          background-color: #e53935;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          font-weight: bold;
+          position: fixed;
+          width: 100%;
+          top: 0;
+          z-index: 1999; /* plus grand que le header */
+        }
+      
+        .header {
+          top: 40px; /* décale le header sous le message d'urgence */
+        }
+      
+        @media (max-width: 768px) {
+          .urgent-message {
+            font-size: 14px;
+            padding: 8px 10px;
+          }
+      
+          .header {
+            top: 38px;
+          }
+        }
+      </style>
+         

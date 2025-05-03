@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qui Sommes-Nous ? | BoomBook’s</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0c0f1c;
+      color: #f0f0f0;
+    }
+
+    .header, .footer {
+      background-color: #0c0f1c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .icon {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+
+    .content-wrapper {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .about-text {
+      font-size: 16px;
+      color: #cccccc;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 500px;
+      margin: 40px auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 40px;
+      padding: 20px 10px;
+    }
+
+    @media (max-width: 768px) {
+      .content-wrapper {
+        padding: 20px 15px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .about-text {
+        font-size: 14px;
+      }
+
+      .about-image {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left icon"></i></a>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon"><i class="fa-solid fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+    </div>
+  </header>
+
+  <!-- Contenu -->
+  <section class="content-wrapper">
+    <h1>Qui sommes-nous ?</h1>
+    <p class="about-text">
+      BoomBook’s est une plateforme dédiée à l’éducation et à l’épanouissement des Africains à travers la lecture. Nous croyons fermement que l’accès à l’éducation et à des ressources de qualité est essentiel pour changer les mentalités et améliorer la vie des populations. Notre mission est de proposer des livres numériques qui inspirent, éduquent, et motivent chaque individu à devenir une meilleure version de lui-même.
+    </p>
+    <p class="about-text">
+      Nous offrons une vaste bibliothèque de livres dans des domaines variés : développement personnel, entrepreneuriat, économie, littérature, et plus encore. Chaque livre sélectionné sur notre plateforme est un outil précieux pour vous aider à atteindre vos objectifs personnels et professionnels.
+    </p>
+    <img src="https://via.placeholder.com/500x300" alt="Image BoomBook’s" class="about-image" />
+
+    <p class="about-text">
+      Chez BoomBook’s, nous ne nous contentons pas de vendre des livres. Nous voulons créer une communauté de lecteurs passionnés, un espace où l’éducation et la transformation personnelle sont au cœur de chaque interaction. Nous croyons que l’ignorance est l’un des plus grands obstacles au développement, et nous sommes déterminés à le combattre à travers l’accès à des ressources pertinentes et motivantes.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 BoomBook’s. Tous droits réservés.
+  </footer>
+
+</body>
+</html>
