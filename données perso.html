@@ -142,3 +142,137 @@
   </footer>
 </body>
 </html>
+
+<!-- Icône WhatsApp flottante -->
+<a href="https://wa.me/237674246355" target="_blank" class="whatsapp-icon">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  
+  <!-- Lien vers la bibliothèque Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* Style de l'icône WhatsApp flottante */
+    .whatsapp-icon {
+      position: fixed;
+      bottom: 20px; /* Positionne l'icône à 20px du bas de la page */
+      right: 20px;  /* Positionne l'icône à 20px de la droite */
+      background-color: #25D366;  /* Couleur verte de WhatsApp */
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;  /* S'assure que l'icône soit toujours visible au-dessus du contenu */
+      transition: background-color 0.3s ease;
+    }
+  
+    /* Effet au survol */
+    .whatsapp-icon:hover {
+      background-color: #128C7E;
+    }
+  
+    /* Assurer que l'icône soit responsive */
+    @media (max-width: 600px) {
+      .whatsapp-icon {
+        padding: 12px;
+        font-size: 28px;
+      }
+    }
+  </style>
+  
+  <!-- Bouton flottant compact -->
+  <div class="connected-users" id="floating-button">
+    <span id="random-users-count"></span>
+    <button class="close-btn" id="close-button">&#10006;</button>
+  </div>
+  
+  <style>
+    .connected-users {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #5e3ec8; /* Couleur violette du site */
+      color: white;
+      padding: 8px 14px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+      z-index: 999;
+      cursor: move;
+      transition: opacity 0.5s ease;
+      display: flex;
+      align-items: center;
+      max-width: 250px;
+    }
+  
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+  
+    .close-btn:hover {
+      transform: scale(1.2);
+      color: #ff5e5e;
+    }
+  
+    @media (max-width: 600px) {
+      .connected-users {
+        font-size: 13px;
+        padding: 6px 12px;
+        bottom: 15px;
+        left: 10px;
+        max-width: 90%;
+      }
+    }
+  </style>
+  
+  <script>
+    function generateRandomUsers() {
+      return Math.floor(Math.random() * 100) + 50;
+    }
+  
+    function updateUserCount() {
+      const count = generateRandomUsers();
+      document.getElementById('random-users-count').innerText =
+        `${count} personnes connectées`;
+    }
+  
+    updateUserCount();
+    setInterval(updateUserCount, 25000);
+  
+    document.getElementById('close-button').addEventListener('click', () => {
+      document.getElementById('floating-button').style.display = 'none';
+    });
+  
+    // Déplacement
+    let isDragging = false;
+    let offsetX, offsetY;
+    const button = document.getElementById('floating-button');
+  
+    button.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - button.getBoundingClientRect().left;
+      offsetY = e.clientY - button.getBoundingClientRect().top;
+      document.body.style.userSelect = 'none';
+    });
+  
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        button.style.left = e.clientX - offsetX + 'px';
+        button.style.top = e.clientY - offsetY + 'px';
+      }
+    });
+  
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      document.body.style.userSelect = '';
+    });
+  </script>
+  
