@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoomBook's - Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #0c0f1c;
+      color: #f5f5f5;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #f5f5f5;
+    }
+
+    button, .btn {
+      background-color: #7e57c2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover, .btn:hover {
+      background-color: #673ab7;
+    }
+
+    a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0c0f1c;
+      padding: 12px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-icon, .return-icon {
+      font-size: 22px;
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 20px;
+      color: #f5f5f5;
+      position: relative;
+    }
+
+    .icon:hover {
+      color: #7e57c2;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    #menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 220px;
+      height: 100%;
+      background: #1a1d2e;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    #menu.open {
+      left: 0;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #menu ul li {
+      padding: 12px 20px;
+    }
+
+    #menu ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+
+    #menu ul li a:hover {
+      background: #2b2f45;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu-icon {
+        font-size: 20px;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left return-icon"></i></a>
+      <i class="fa-solid fa-bars menu-icon" onclick="toggleMenu()"></i>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon">
+        <i class="fa-solid fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="newsletter.html"><i class="fa-solid fa-envelope"></i> Newsletter</a></li>
+      <li><a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="catalogue.html"><i class="fa-solid fa-book-open"></i> Catalogue</a></li>
+      <li><a href="https://wa.me/message/2HZ5WLZCZZIXK1"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="https://t.me/boombookForms"><i class="fa-brands fa-telegram"></i> Telegram</a></li>
+      <li><a href="#"><i class="fa-solid fa-chalkboard-teacher"></i> Nos Formations</a></li>
+      <li><a href="#"><i class="fa-solid fa-users"></i> Rejoignez-nous</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    function toggleMenu() {
+      menu.classList.toggle("open");
+    }
+
+    document.addEventListener("click", function (event) {
+      const icon = document.querySelector(".menu-icon");
+      const isClickInsideMenu = menu.contains(event.target);
+      const isClickOnIcon = icon.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnIcon) {
+        menu.classList.remove("open");
+      }
+    });
+
+    // Fermer le menu automatiquement quand on clique sur un lien
+    const links = menu.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+      });
+    });
+
+    // Mise à jour du panier
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    function mettreAJourCompteur() {
+      let compteur = document.getElementById("cart-count");
+      compteur.innerText = panier.length;
+      compteur.style.display = panier.length > 0 ? "inline-block" : "none";
+    }
+    mettreAJourCompteur();
+  </script>
+
+</body>
+</html>
+<section class="welcome-section">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Catalogue<span>BoomBook’s</span></h1>
+      <p class="welcome-subtitle">L'antidote de l'ignorance.</p>
+      <p class="welcome-categories">notre catalogue</p>
+    </div>
+  </section>
+  <style>.welcome-section {
+    background: #0c0f1c;
+    padding: 25px 20px 60px;
+    text-align: center;
+    color: #f0f0f0;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 60px;
+  }
+  
+  .welcome-title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .welcome-title span {
+    color: #ff9800;
+  }
+  
+  .welcome-subtitle {
+    font-size: 18px;
+    color: #cccccc;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .welcome-categories {
+    font-size: 16px;
+    color: #bbbbbb;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 28px;
+    }
+  
+    .welcome-subtitle {
+      font-size: 16px;
+    }
+  
+    .welcome-categories {
+      font-size: 14px;
+    }
+  }
+  </style>
+  <section class="info-highlight">
+    <div class="info-box">
+      <div class="info-left">
+        <span class="info-icon"><i class="fas fa-book"></i></span>
+        <span class="info-text">Livres numériques</span>
+        <span class="separator">|</span>
+        <span class="info-icon"><i class="fas fa-download"></i></span>
+        <span class="info-text">Téléchargeables</span>
+      </div>
+      <div class="info-right">
+        <span class="info-icon"><i class="fas fa-users"></i></span>
+        <span class="info-text italic-text">Déjà +12 000 personnes nous font confiance</span>
+      </div>
+    </div>
+  </section>
+  <style>.info-highlight {
+    background: #0c0f1c;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    color: #f0f0f0;
+    font-size: 14px;
+  }
+  
+  .info-left, .info-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+  
+  .separator {
+    color: #888;
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  
+  .italic-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #dddddd;
+  }
+  
+  .info-icon i {
+    color: #a29bfe;
+    font-size: 16px;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 600px) {
+    .info-box {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .info-left, .info-right {
+      justify-content: center;
+    }
+  }
+  </style>
+
+<section class="book-presentation">
+    <div class="book-container">
+      <div class="book-image">
+        <img src="images/mon-livre.jpg" alt="Image du livre" />
+      </div>
+      <div class="book-details">
+        <div class="book-card">
+          <p class="dispo">📘 Disponible dès maintenant</p>
+          <div class="price-box">
+            <span class="old-price">7 000 FCFA</span>
+            <span class="new-price">655 XAF</span>
+          </div>
+          <a href="paiement.html" class="buy-button">Obtenir le livre</a>
+          <p class="download-info" id="download-count"><em>📥 Déjà téléchargé par 58 lecteurs motivés</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .book-presentation {
+      padding: 40px 20px;
+      background-color: #0c0f1c;
+      color: #f0f0f0;
+      font-family: 'Montserrat', sans-serif;
+    }
+  
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+  
+    .book-image img {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    }
+  
+    .book-details {
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .book-card {
+    border: 2px solid #a16eff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+  }
+  
+    .dispo {
+      font-size: 18px;
+      color: #ff9800;
+      font-weight: bold;
+    }
+  
+    .price-box {
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+  
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+    }
+  
+    .new-price {
+      font-size: 28px;
+      color: #a16eff;
+      font-weight: bold;
+    }
+  
+    .buy-button {
+      background-color: #a16eff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: background 0.3s ease;
+      margin: 10px 0;
+    }
+  
+    .buy-button:hover {
+      background-color: #8b58e6;
+    }
+  
+    .download-info {
+      font-size: 14px;
+      color: #cccccc;
+      margin-top: 15px;
+    }
+  
+    @media (max-width: 700px) {
+      .book-container {
+        flex-direction: column;
+        text-align: center;
+      }
+  
+      .book-details {
+        width: 100%;
+      }
+    }
+  </style>
+  
+  <script>
+    // Gère le nombre dynamique de téléchargements
+    const downloadText = document.getElementById("download-count");
+  
+    let previous = localStorage.getItem("downloads");
+    if (!previous) {
+      previous = Math.floor(Math.random() * 30) + 50; // entre 50 et 80 au début
+    } else {
+      previous = parseInt(previous) + Math.floor(Math.random() * 5) + 1; // ajoute 1 à 5
+    }
+  
+    localStorage.setItem("downloads", previous);
+    downloadText.innerHTML = `<em>📥 Déjà téléchargé par ${previous} lecteurs motivés</em>`;
+  </script>
+  
+  <section class="book-details">
+    <div class="info-card">
+      <h3 class="section-title">Description du livre</h3>
+      <p class="section-text">Ce livre vous plonge dans l’univers de la réussite personnelle, avec des stratégies concrètes pour transformer votre quotidien. Accessible, direct et inspirant.</p>
+  
+      <hr />
+  
+      <h3 class="section-title">Ce que vous trouverez dans ce livre</h3>
+      <ul class="section-list">
+        <li>Des méthodes simples pour améliorer votre mindset</li>
+        <li>Des exemples inspirants de réussite</li>
+        <li>Un guide pas à pas pour passer à l'action</li>
+      </ul>
+  
+      <hr />
+  
+      <h3 class="section-title">Cet ebook est pour vous si vous cherchez :</h3>
+      <ul class="section-list">
+        <li>À sortir de la routine et prendre le contrôle de votre vie</li>
+        <li>Des conseils pratiques pour progresser chaque jour</li>
+        <li>Une source de motivation rapide et efficace</li>
+      </ul>
+  
+      <hr />
+  
+      <h3 class="section-title">Pourquoi choisir ce livre ?</h3>
+      <ul class="section-list">
+        <li>Clair, concis et applicable immédiatement</li>
+        <li>Écrit pour les lecteurs africains d’aujourd’hui</li>
+        <li>Des résultats visibles après lecture</li>
+      </ul>
+    </div>
+  </section>
+  <style>.book-details {
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 0 20px;
+  }
+  
+  .info-card {
+    border: 2px solid #a16eff;
+    border-radius: 15px;
+    padding: 25px;
+    background-color: transparent;
+  }
+  
+  .section-title {
+    color: #ff9800;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  .section-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #ccc;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .section-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 25px 0;
+  }
+  
+  @media (max-width: 600px) {
+    .section-title {
+      font-size: 18px;
+    }
+    .section-text, .section-list {
+      font-size: 14px;
+    }
+  }
+  </style>
+  
+  <div class="motivation-banner">
+    <p class="motivation-text">
+      📚 Transformez votre vie une page à la fois – Ce livre a déjà changé celle de centaines de lecteurs... Pourquoi pas vous ? 🌟
+    </p>
+  </div>
+  <style>.motivation-banner {
+    width: 100%;
+    background: linear-gradient(to right, #5f27cd, #341f97);
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .motivation-text {
+    display: inline-block;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fffbe6;
+    font-family: 'Montserrat', sans-serif;
+    animation: scroll-left 15s linear infinite;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .motivation-text {
+      font-size: 14px;
+    }
+  }
+  </style>
+  
+  
+  <section class="similar-products">
+    <h2>📚 Produits Similaires</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="livre1.jpg" alt="Livre 1" />
+        <h3>Le Pouvoir des Habitudes</h3>
+        <p class="price"><span class="old-price">7000 XAF</span> <span class="new-price">655 XAF</span></p>
+        <button>Acheter maintenant</button>
+        <p class="buyers">📥 <span class="buyers-count"></span> personnes ont déjà acheté</p>
+      </div>
+      <div class="product-card">
+        <img src="livre2.jpg" alt="Livre 2" />
+        <h3>Plus Malin que le Diable</h3>
+        <p class="price"><span class="old-price">7000 XAF</span> <span class="new-price">655 XAF</span></p>
+        <button>Acheter maintenant</button>
+        <p class="buyers">📥 <span class="buyers-count"></span> personnes ont déjà acheté</p>
+      </div>
+      <div class="product-card">
+        <img src="livre3.jpg" alt="Livre 3" />
+        <h3>Les Quatre Accords Toltèques</h3>
+        <p class="price"><span class="old-price">7000 XAF</span> <span class="new-price">655 XAF</span></p>
+        <button>Acheter maintenant</button>
+        <p class="buyers">📥 <span class="buyers-count"></span> personnes ont déjà acheté</p>
+      </div>
+      <div class="product-card">
+        <img src="livre4.jpg" alt="Livre 4" />
+        <h3>La Science de la Grandeur</h3>
+        <p class="price"><span class="old-price">7000 XAF</span> <span class="new-price">655 XAF</span></p>
+        <button>Acheter maintenant</button>
+        <p class="buyers">📥 <span class="buyers-count"></span> personnes ont déjà acheté</p>
+      </div>
+    </div>
+  </section>
+  <style>.similar-products {
+    padding: 40px 20px;
+    background-color: #0c0f1c;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .similar-products h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ff9800;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .product-card {
+    background-color: #111428;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #ffffff;
+  }
+  
+  .price {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+  }
+  
+  .new-price {
+    color: #00e676;
+    font-weight: bold;
+  }
+  
+  .product-card button {
+    background-color: #7e57c2;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .product-card button:hover {
+    background-color: #9575cd;
+  }
+  
+  .buyers {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ccc;
+    font-style: italic;
+  }
+  </style>
+  <script>
+    document.querySelectorAll('.buyers-count').forEach((el, i) => {
+      const base = 50 + Math.floor(Math.random() * 100) + i * 10;
+      el.innerText = base;
+    });
+  </script>
+  
+  <section class="pack-livre-section">
+    <div class="pack-card">
+      <h2 class="pack-title">Pack ÉCONOMIE</h2>
+      <img src="pack-economie.jpg" alt="Image du pack Économie" class="pack-image" />
+      <p class="pack-description">Un ensemble de livres indispensables pour comprendre les mécanismes économiques et développer une vision claire de la finance mondiale.</p>
+      
+      <div class="pack-prices">
+        <span class="old-price">7 000 XAF</span>
+        <span class="current-price">655 XAF</span>
+      </div>
+      
+      <a href="https://wa.me/237674246355?text=Je%20veux%20obtenir%20le%20Pack%20ÉCONOMIE%20BoomBook's" target="_blank" class="pack-button">Obtenir le pack</a>
+  
+      <p class="pack-download-count"><em>📥 Plus de <span id="pack-download-number"></span> personnes ont déjà téléchargé ce pack</em></p>
+    </div>
+  </section>
+  
+  <style>
+    .pack-livre-section {
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      background-color: #0c0f1c;
+    }
+  
+    .pack-card {
+      max-width: 500px;
+      width: 100%;
+      border: 2px solid #444;
+      border-radius: 15px;
+      padding: 20px;
+      background-color: #12172b;
+      color: #f0f0f0;
+      text-align: center;
+    }
+  
+    .pack-title {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #ff9800;
+    }
+  
+    .pack-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+  
+    .pack-description {
+      font-size: 16px;
+      color: #cccccc;
+      margin-bottom: 20px;
+    }
+  
+    .pack-prices {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+  
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 10px;
+    }
+  
+    .current-price {
+      color: #4caf50;
+      font-weight: bold;
+    }
+  
+    .pack-button {
+      display: inline-block;
+      background-color: #7e57c2;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 10px;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+  
+    .pack-button:hover {
+      background-color: #9575cd;
+    }
+  
+    .pack-download-count {
+      font-size: 14px;
+      color: #bbb;
+      margin-top: 15px;
+      font-style: italic;
+    }
+  
+    @media (max-width: 600px) {
+      .pack-card {
+        padding: 15px;
+      }
+  
+      .pack-title {
+        font-size: 22px;
+      }
+  
+      .pack-description {
+        font-size: 15px;
+      }
+    }
+  </style>
+  
+  <script>
+    // Génère un nombre aléatoire de téléchargements entre 73 et 154
+    document.getElementById("pack-download-number").textContent = Math.floor(Math.random() * 82) + 73;
+  </script>
+  
+  <section class="receive-section">
+    <div class="receive-wrapper">
+      <h2 class="receive-title">📦 COMMENT RECEVOIR VOTRE LIVRE OU FORMATION ?</h2>
+      <hr class="separator">
+  
+      <p class="receive-step">
+        1️⃣ Choisissez le <strong>livre</strong> ou la <strong>formation</strong> qui vous intéresse sur notre site.
+      </p>
+      <p class="receive-step">
+        2️⃣ Cliquez sur le bouton <strong>"Acheter"</strong> et procédez au <strong>paiement sécurisé</strong> via notre partenaire <strong>Lygos</strong>.
+      </p>
+      <p class="receive-step">
+        3️⃣ Lors du paiement, <strong>assurez-vous d’entrer une adresse e-mail correcte</strong> : c’est à cette adresse que vous recevrez votre contenu.
+      </p>
+      <p class="receive-step">
+        4️⃣ Une fois le paiement confirmé, vous recevrez <strong>automatiquement par email</strong> un lien de téléchargement pour votre <strong>livre numérique ou votre formation</strong>.
+      </p>
+      <p class="receive-step">
+        5️⃣ Si vous ne voyez pas l’email immédiatement, <strong>vérifiez vos spams ou courriers indésirables</strong>.
+      </p>
+  
+      <hr class="separator">
+      <p class="receive-info">
+        💡 N’oubliez pas : toutes les livraisons sont 100% numériques, rapides et automatiques. Vous n’avez rien à attendre par la poste !
+      </p>
+    </div>
+  </section>
+  <style>
+    .receive-section {
+      background-color: #0c0f1c;
+      padding: 60px 20px;
+      font-family: 'Open Sans', sans-serif;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .receive-wrapper {
+      background-color: #111426;
+      border: 2px solid #3f51b5;
+      border-radius: 15px;
+      max-width: 900px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    
+    .receive-title {
+      font-size: 24px;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .separator {
+      border: none;
+      height: 2px;
+      background-color: #3f51b5;
+      margin: 20px 0;
+    }
+    
+    .receive-step {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+      color: #dddddd;
+    }
+    
+    .receive-info {
+      font-style: italic;
+      font-size: 15px;
+      color: #bbbbbb;
+      text-align: center;
+    }
+    
+    /* ✅ Responsive */
+    @media (max-width: 600px) {
+      .receive-title {
+        font-size: 20px;
+      }
+    
+      .receive-step {
+        font-size: 15px;
+      }
+    
+      .receive-info {
+        font-size: 14px;
+      }
+    }
+    </style>
+    
+    <section class="whatsapp-contact-section">
+      <div class="whatsapp-container">
+        <h2 class="whatsapp-title">📲 Vous préférez recevoir votre livre via WhatsApp ?</h2>
+        <p class="whatsapp-text">
+          Pas de souci ! Si vous ne souhaitez pas utiliser votre adresse email ou que vous avez des difficultés à recevoir votre fichier, vous pouvez <strong>nous contacter directement sur WhatsApp</strong>. Nous vous enverrons votre livre ou votre formation manuellement, rapidement et avec plaisir !
+        </p>
+    
+        <a href="https://wa.me/237674246355" target="_blank" class="whatsapp-button">
+          📥 Recevoir mon livre via WhatsApp
+        </a>
+      </div>
+    </section>
+    <style>.whatsapp-contact-section {
+      background-color: #0c0f1c;
+      padding: 60px 20px;
+      color: #f2f2f2;
+      font-family: 'Open Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .whatsapp-container {
+      background: #111426;
+      border: 2px solid #4caf50;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 255, 100, 0.1);
+    }
+    
+    .whatsapp-title {
+      font-size: 22px;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    
+    .whatsapp-text {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #dcdcdc;
+      line-height: 1.6;
+    }
+    
+    .whatsapp-button {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    
+    .whatsapp-button:hover {
+      background-color: #1ebd59;
+    }
+    
+    /* ✅ Responsive */
+    @media (max-width: 600px) {
+      .whatsapp-title {
+        font-size: 18px;
+      }
+    
+      .whatsapp-text {
+        font-size: 15px;
+      }
+    
+      .whatsapp-button {
+        width: 90%;
+        font-size: 15px;
+      }
+    }
+    </style>
+  
+  <section class="animated-banner">
+    <div class="scrolling-text">
+      <span>📚 Lire, c’est s’élever. 💡 Chaque page lue vous rapproche de votre liberté. 🚀 Le savoir est votre plus grand pouvoir. 💼 BoomBook’s, l’antidote contre l’ignorance. ✊🏽 Investis dans un livre, récolte une vie meilleure.</span>
+    </div>
+  </section>
+  <style>.animated-banner {
+    background: linear-gradient(to right, #0c0f1c, #111426);
+    color: #f0f0f0;
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 2px solid #4caf50;
+    border-bottom: 2px solid #4caf50;
+  }
+  
+  .scrolling-text {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scrollBanner 25s linear infinite;
+    font-size: 16px;
+    padding-left: 100%;
+  }
+  
+  @keyframes scrollBanner {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 600px) {
+    .scrolling-text {
+      font-size: 14px;
+    }
+  }
+  </style>
+  
+  <!-- SECTION AVIS CLIENT -->
+  <section style="background-color: #0c0f1c;">
+    <div class="avis-container">
+      <h2 class="avis-title">🗣️ Donnez votre avis</h2>
+      <p class="avis-subtitle">Votre retour compte énormément pour nous !</p>
+  
+      <form action="https://formspree.io/f/meoanzww" method="POST" class="avis-form" onsubmit="saveAvisLocally(); alert('✅ Merci pour votre avis !');">
+        
+        <label for="note">Votre note :</label>
+        <div class="stars" id="starRating">
+          <span onclick="rate(1)">★</span>
+          <span onclick="rate(2)">★</span>
+          <span onclick="rate(3)">★</span>
+          <span onclick="rate(4)">★</span>
+          <span onclick="rate(5)">★</span>
+        </div>
+        <input type="hidden" id="note" name="Note">
+  
+        <label for="avis">Votre avis :</label>
+        <textarea id="avis" name="Avis" rows="5" placeholder="Écrivez votre avis ici..." required></textarea>
+  
+        <label for="nom">Votre nom :</label>
+        <input type="text" id="nom" name="Nom" placeholder="Votre nom" required>
+  
+        <label for="email">Votre email :</label>
+        <input type="email" id="email" name="Email" placeholder="exemple@mail.com" required>
+  
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+  
+  <style>
+    .avis-container {
+      background-color: #12152a;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(126, 87, 194, 0.4);
+    }
+  
+    .avis-title {
+      font-size: 28px;
+      font-family: 'Montserrat', sans-serif;
+      color: #f5f5f5;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    .avis-subtitle {
+      text-align: center;
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+  
+    .avis-form label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+      color: #f5f5f5;
+    }
+  
+    .avis-form input,
+    .avis-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #2c2f40;
+      border-radius: 8px;
+      background-color: #1a1d2e;
+      color: #f5f5f5;
+      font-size: 16px;
+    }
+  
+    .avis-form button {
+      margin-top: 25px;
+      background-color: #7e57c2;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  
+    .avis-form button:hover {
+      background-color: #673ab7;
+    }
+  
+    .stars span {
+      font-size: 28px;
+      cursor: pointer;
+      color: #555;
+      margin-right: 5px;
+      transition: color 0.2s ease-in-out;
+    }
+  
+    .stars span.active {
+      color: #ff9800; /* orange accent */
+    }
+  
+    @media (max-width: 600px) {
+      .avis-container {
+        padding: 20px;
+      }
+      .avis-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+  
+  <script>
+    function rate(note) {
+      document.getElementById('note').value = note;
+      const stars = document.querySelectorAll('#starRating span');
+      stars.forEach((star, index) => {
+        star.classList.toggle('active', index < note);
+      });
+    }
+  
+    function saveAvisLocally() {
+      const nom = document.getElementById('nom').value;
+      const email = document.getElementById('email').value;
+      const avis = document.getElementById('avis').value;
+      localStorage.setItem('boom_nom', nom);
+      localStorage.setItem('boom_email', email);
+      localStorage.setItem('boom_avis', avis);
+    }
+  
+    window.onload = function () {
+      if (localStorage.getItem('boom_nom')) {
+        document.getElementById('nom').value = localStorage.getItem('boom_nom');
+      }
+      if (localStorage.getItem('boom_email')) {
+        document.getElementById('email').value = localStorage.getItem('boom_email');
+      }
+      if (localStorage.getItem('boom_avis')) {
+        document.getElementById('avis').value = localStorage.getItem('boom_avis');
+      }
+    }
+  </script>
+  
+  <!-- SECTION AFFICHAGE DES AVIS -->
+  <section style="background-color: #0c0f1c;">
+    <div class="avis-display-container">
+      <h2 class="avis-title">📝 Vos avis</h2>
+      <div id="avisList" class="avis-list">
+        <!-- Les avis s’afficheront ici -->
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .avis-display-container {
+      background-color: #12152a;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 900px;
+      margin: 40px auto;
+      box-shadow: 0 0 20px rgba(126, 87, 194, 0.4);
+    }
+  
+    .avis-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+  
+    .avis-card {
+      background-color: #1a1d2e;
+      padding: 20px;
+      border-radius: 12px;
+      color: #f5f5f5;
+      box-shadow: 0 0 10px rgba(126, 87, 194, 0.2);
+    }
+  
+    .avis-card h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #ff9800;
+    }
+  
+    .avis-card p {
+      font-size: 15px;
+      margin: 10px 0;
+      color: #ccc;
+    }
+  
+    .avis-note {
+      color: #ff9800;
+      font-size: 16px;
+    }
+  
+    @media (max-width: 600px) {
+      .avis-display-container {
+        padding: 20px;
+      }
+    }
+  </style>
+  
+  <script>
+    // Charger les avis depuis le localStorage
+    window.onload = function () {
+      const nom = localStorage.getItem('boom_nom');
+      const avis = localStorage.getItem('boom_avis');
+      const note = document.getElementById('note')?.value || "5";
+  
+      if (nom && avis) {
+        const avisHTML = `
+          <div class="avis-card">
+            <h3>${nom}</h3>
+            <div class="avis-note">Note : ${"★".repeat(note)}</div>
+            <p>${avis}</p>
+          </div>
+        `;
+        document.getElementById('avisList').innerHTML += avisHTML;
+      }
+    };
+  </script>
+  
+  <!-- SECTION SUIVEZ-NOUS -->
+  <section class="suivez-nous">
+    <h2>📲 Suivez-nous</h2>
+    <p>Restez connectés sur nos réseaux pour ne rien manquer !</p>
+    <div class="social-icons">
+      <a href="https://facebook.com/tonpage" target="_blank" class="icon fb" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://tiktok.com/@tonprofil" target="_blank" class="icon tiktok" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://t.me/tontelegram" target="_blank" class="icon telegram" aria-label="Telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+      <a href="https://wa.me/237XXXXXXXX" target="_blank" class="icon whatsapp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </section>
+  
+  <!-- STYLE -->
+  <style>
+    .suivez-nous {
+      background-color: #11152a;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 3px solid #7e57c2;
+    }
+  
+    .suivez-nous h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #f5f5f5;
+    }
+  
+    .suivez-nous p {
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+  
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  
+    .social-icons .icon {
+      background-color: #7e57c2;
+      color: white;
+      font-size: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+  
+    .social-icons .icon:hover {
+      background-color: #673ab7;
+    }
+  
+    /* Icônes spécifiques (optionnel pour ajuster) */
+    .icon.fb   { background-color: #3b5998; }
+    .icon.tiktok { background-color: #010101; }
+    .icon.telegram { background-color: #0088cc; }
+    .icon.whatsapp { background-color: #25d366; }
+  
+    .icon.fb:hover       { background-color: #2d4373; }
+    .icon.tiktok:hover   { background-color: #111; }
+    .icon.telegram:hover { background-color: #007ab8; }
+    .icon.whatsapp:hover { background-color: #1ebc59; }
+  
+    @media (max-width: 500px) {
+      .social-icons {
+        gap: 15px;
+      }
+  
+      .social-icons .icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+      }
+    }
+  </style>
+  
+  <footer>
+    <div class="footer-container">
+  
+        <!-- Catégorie 1 : À PROPOS -->
+        <div class="footer-column">
+            <h3>✔ À PROPOS</h3>
+            <ul>
+                <li><a href="conditions générales.html">Conditions générales</a></li>
+                <li><a href="données perso.html">Données personnelles</a></li>
+                <li><a href="mention légale.html">Mentions légales</a></li>
+                <li><a href="cookies.html">Cookies</a></li>
+                <li><a href="avis BoomBook's.html">Avis BoomBook's</a></li>
+            </ul>
+        </div>
+  
+        <!-- Catégorie 2 : AIDE -->
+        <div class="footer-column">
+            <h3>✔ AIDE</h3>
+            <ul>
+                <li><a href="une question.html">Une question ?</a></li>
+                <li><a href="contactez nous.html">Contactez-nous</a></li>
+                <li><a href="services BoomBook's.html">Services BoomBook's</a></li>
+            </ul>
+        </div>
+  
+        <!-- Catégorie 3 : LE GROUPE BoomBook's -->
+        <div class="footer-column">
+            <h3>✔ LE GROUPE BoomBook's</h3>
+            <ul>
+                <li><a href="aui sommes nous.html">Qui sommes-nous ?</a></li>
+                <li><a href="groupes BoomBook's.html">Groupes BoomBook's</a></li>
+                <li><a href="chaines BoomBook's.html">Chaînes BoomBook's</a></li>
+            </ul>
+        </div>
+  
+        <!-- Catégorie 4 : PARTENAIRES -->
+        <div class="footer-column">
+            <h3>✔ PARTENAIRES</h3>
+            <ul>
+                <li><a href="#">Tik&Pay</a></li>
+            </ul>
+        </div>
+  
+    </div>
+  
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p>© 2025 BoomBook's. Tous droits réservés.</p>
+    </div>
+  </footer>
+  <style>/* Footer */
+  footer {
+    background-color: #11152a;
+    color: white;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Conteneur du footer */
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  
+  /* Colonne du footer */
+  .footer-column {
+    flex: 1;
+    min-width: 220px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-column ul li a {
+    text-decoration: none;
+    color: #aaa;
+    transition: 0.3s;
+  }
+  
+  .footer-column ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  /* Copyright */
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+  }
+  
+  /* Responsive */
+  @media (max-width: 800px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+  }
+  /* Effet d'apparition fluide */
+  footer {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  /* Apparition quand visible */
+  footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  </style>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    const footer = document.querySelector("footer");
+  
+    function checkFooterVisibility() {
+        const footerPosition = footer.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+  
+        if (footerPosition < screenHeight - 50) {
+            footer.classList.add("visible");
+        }
+    }
+  
+    window.addEventListener("scroll", checkFooterVisibility);
+    checkFooterVisibility(); // Vérifier au chargement de la page
+  });
+  </script>
+  
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    let searchInput = document.getElementById("searchInput");
+    let books = document.querySelectorAll(".book-item");
+  
+    if (searchInput && books.length > 0) {
+        searchInput.addEventListener("input", function () {
+            let query = this.value.toLowerCase().trim();
+  
+            books.forEach(book => {
+                let titleElement = book.querySelector(".book-title");
+  
+                if (titleElement) {
+                    let title = titleElement.textContent.toLowerCase();
+                    book.style.display = title.includes(query) ? "block" : "none";
+                }
+            });
+        });
+    } else {
+        console.error("Erreur : Vérifie que l'ID 'searchInput' existe et que les livres ont la classe 'book-item'.");
+    }
+  });
+  </script>
+  
+  <!-- Font Awesome (déjà inclus dans ton head mais on le laisse ici au cas où) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <div class="countdown-container">
+    <h2 class="countdown-title">🔥 Offre spéciale : disponible encore pendant</h2>
+    <div class="countdown-timer" id="countdown">
+      <span id="days">00</span>j :
+      <span id="hours">00</span>h :
+      <span id="minutes">00</span>min :
+      <span id="seconds">00</span>s
+    </div>
+  </div>
+  <style>.countdown-container {
+    background-color: #1c1f30;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 30px 20px;
+    color: #fffbe6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .countdown-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff9800;
+    margin-bottom: 10px;
+  }
+  
+  .countdown-timer {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  @media (max-width: 600px) {
+    .countdown-title {
+      font-size: 16px;
+    }
+  
+    .countdown-timer {
+      font-size: 18px;
+    }
+  }
+  </style>
+  <script>
+    function getTonightMidnight() {
+      const now = new Date();
+      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+      return midnight.getTime();
+    }
+  
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const countdownDate = getTonightMidnight();
+      const distance = countdownDate - now;
+  
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "⏰ L’offre a expiré pour aujourd’hui !";
+        return;
+      }
+  
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+      document.getElementById("days").innerText = "00";
+      document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    }
+  
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+  
+  <!-- Icône WhatsApp flottante -->
+  <a href="https://wa.me/237674246355" target="_blank" class="whatsapp-icon">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  
+  <!-- Lien vers la bibliothèque Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* Style de l'icône WhatsApp flottante */
+    .whatsapp-icon {
+      position: fixed;
+      bottom: 20px; /* Positionne l'icône à 20px du bas de la page */
+      right: 20px;  /* Positionne l'icône à 20px de la droite */
+      background-color: #25D366;  /* Couleur verte de WhatsApp */
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;  /* S'assure que l'icône soit toujours visible au-dessus du contenu */
+      transition: background-color 0.3s ease;
+    }
+  
+    /* Effet au survol */
+    .whatsapp-icon:hover {
+      background-color: #128C7E;
+    }
+  
+    /* Assurer que l'icône soit responsive */
+    @media (max-width: 600px) {
+      .whatsapp-icon {
+        padding: 12px;
+        font-size: 28px;
+      }
+    }
+  </style>
+  
+  <!-- Bouton flottant compact -->
+  <div class="connected-users" id="floating-button">
+    <span id="random-users-count"></span>
+    <button class="close-btn" id="close-button">&#10006;</button>
+  </div>
+  
+  <style>
+    .connected-users {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #5e3ec8; /* Couleur violette du site */
+      color: white;
+      padding: 8px 14px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+      z-index: 999;
+      cursor: move;
+      transition: opacity 0.5s ease;
+      display: flex;
+      align-items: center;
+      max-width: 250px;
+    }
+  
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+  
+    .close-btn:hover {
+      transform: scale(1.2);
+      color: #ff5e5e;
+    }
+  
+    @media (max-width: 600px) {
+      .connected-users {
+        font-size: 13px;
+        padding: 6px 12px;
+        bottom: 15px;
+        left: 10px;
+        max-width: 90%;
+      }
+    }
+  </style>
+  
+  <script>
+    function generateRandomUsers() {
+      return Math.floor(Math.random() * 100) + 50;
+    }
+  
+    function updateUserCount() {
+      const count = generateRandomUsers();
+      document.getElementById('random-users-count').innerText =
+        `${count} personnes connectées`;
+    }
+  
+    updateUserCount();
+    setInterval(updateUserCount, 25000);
+  
+    document.getElementById('close-button').addEventListener('click', () => {
+      document.getElementById('floating-button').style.display = 'none';
+    });
+  
+    // Déplacement
+    let isDragging = false;
+    let offsetX, offsetY;
+    const button = document.getElementById('floating-button');
+  
+    button.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - button.getBoundingClientRect().left;
+      offsetY = e.clientY - button.getBoundingClientRect().top;
+      document.body.style.userSelect = 'none';
+    });
+  
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        button.style.left = e.clientX - offsetX + 'px';
+        button.style.top = e.clientY - offsetY + 'px';
+      }
+    });
+  
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      document.body.style.userSelect = '';
+    });
+  </script>
+  

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoomBook's - Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #0c0f1c;
+      color: #f5f5f5;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #f5f5f5;
+    }
+
+    button, .btn {
+      background-color: #7e57c2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover, .btn:hover {
+      background-color: #673ab7;
+    }
+
+    a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0c0f1c;
+      padding: 12px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-icon, .return-icon {
+      font-size: 22px;
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f5f5f5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo span {
+      color: #ff9800;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 20px;
+      color: #f5f5f5;
+      position: relative;
+    }
+
+    .icon:hover {
+      color: #7e57c2;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    #menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 220px;
+      height: 100%;
+      background: #1a1d2e;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      z-index: 999;
+    }
+
+    #menu.open {
+      left: 0;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #menu ul li {
+      padding: 12px 20px;
+    }
+
+    #menu ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+
+    #menu ul li a:hover {
+      background: #2b2f45;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu-icon {
+        font-size: 20px;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" title="Retour à l'accueil"><i class="fa-solid fa-arrow-left return-icon"></i></a>
+      <i class="fa-solid fa-bars menu-icon" onclick="toggleMenu()"></i>
+      <h1 class="logo">Boom<span>Book’s</span></h1>
+    </div>
+
+    <div class="header-right">
+      <a href="catalogue.html" class="icon"><i class="fa-solid fa-book-open"></i></a>
+      <a href="profil.html" class="icon">
+        <i class="fa-solid fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="newsletter.html"><i class="fa-solid fa-envelope"></i> Newsletter</a></li>
+      <li><a href="profil.html"><i class="fa-solid fa-user"></i> Profil</a></li>
+      <li><a href="catalogue.html"><i class="fa-solid fa-book-open"></i> Catalogue</a></li>
+      <li><a href="https://wa.me/message/2HZ5WLZCZZIXK1"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="https://t.me/boombookForms"><i class="fa-brands fa-telegram"></i> Telegram</a></li>
+      <li><a href="#"><i class="fa-solid fa-chalkboard-teacher"></i> Nos Formations</a></li>
+      <li><a href="#"><i class="fa-solid fa-users"></i> Rejoignez-nous</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    function toggleMenu() {
+      menu.classList.toggle("open");
+    }
+
+    document.addEventListener("click", function (event) {
+      const icon = document.querySelector(".menu-icon");
+      const isClickInsideMenu = menu.contains(event.target);
+      const isClickOnIcon = icon.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnIcon) {
+        menu.classList.remove("open");
+      }
+    });
+
+    // Fermer le menu automatiquement quand on clique sur un lien
+    const links = menu.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        menu.classList.remove("open");
+      });
+    });
+
+    // Mise à jour du panier
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+    function mettreAJourCompteur() {
+      let compteur = document.getElementById("cart-count");
+      compteur.innerText = panier.length;
+      compteur.style.display = panier.length > 0 ? "inline-block" : "none";
+    }
+    mettreAJourCompteur();
+  </script>
+
+</body>
+</html>
+<section class="welcome-section">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Catalogue<span>BoomBook’s</span></h1>
+      <p class="welcome-subtitle">L'antidote de l'ignorance.</p>
+      <p class="welcome-categories">notre catalogue</p>
+    </div>
+  </section>
+  <style>.welcome-section {
+    background: #0c0f1c;
+    padding: 25px 20px 60px;
+    text-align: center;
+    color: #f0f0f0;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 60px;
+  }
+  
+  .welcome-title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .welcome-title span {
+    color: #ff9800;
+  }
+  
+  .welcome-subtitle {
+    font-size: 18px;
+    color: #cccccc;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .welcome-categories {
+    font-size: 16px;
+    color: #bbbbbb;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 28px;
+    }
+  
+    .welcome-subtitle {
+      font-size: 16px;
+    }
+  
+    .welcome-categories {
+      font-size: 14px;
+    }
+  }
+  </style>
+  <section class="info-highlight">
+    <div class="info-box">
+      <div class="info-left">
+        <span class="info-icon"><i class="fas fa-book"></i></span>
+        <span class="info-text">Livres numériques</span>
+        <span class="separator">|</span>
+        <span class="info-icon"><i class="fas fa-download"></i></span>
+        <span class="info-text">Téléchargeables</span>
+      </div>
+      <div class="info-right">
+        <span class="info-icon"><i class="fas fa-users"></i></span>
+        <span class="info-text italic-text">Déjà +12 000 personnes nous font confiance</span>
+      </div>
+    </div>
+  </section>
+  <style>.info-highlight {
+    background: #0c0f1c;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    color: #f0f0f0;
+    font-size: 14px;
+  }
+  
+  .info-left, .info-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+  
+  .separator {
+    color: #888;
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  
+  .italic-text {
+    font-style: italic;
+    font-size: 14px;
+    color: #dddddd;
+  }
+  
+  .info-icon i {
+    color: #a29bfe;
+    font-size: 16px;
+  }
+  
+  /* ✅ Responsive */
+  @media (max-width: 600px) {
+    .info-box {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .info-left, .info-right {
+      justify-content: center;
+    }
+  }
+  </style>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formations BoomBook's</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0b0c2a;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .formations-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .formation-card {
+      background-color: transparent;
+      border: 2px solid #7646ff;
+      border-radius: 20px;
+      padding: 20px;
+      width: 300px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .formation-card img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .promo-label {
+      background-color: #ff0077;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    .formation-title {
+      font-size: 1.2rem;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    .prices {
+      margin: 10px 0;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #bbb;
+      margin-right: 10px;
+    }
+
+    .new-price {
+      color: #8a6cff;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .btn-formation {
+      background-color: #7646ff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-formation:hover {
+      background-color: #5d37cc;
+    }
+
+    .download-info {
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .description-container {
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #8a6cff;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: auto;
+    }
+
+    .description-text {
+      display: none;
+      margin-top: 10px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 700px) {
+      .formations-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="formations-container">
+  <!-- Formation 1 -->
+  <div class="formation-card">
+    <div class="promo-label">PROMO</div>
+    <img src="https://via.placeholder.com/300x180?text=Formation+1" alt="Formation 1">
+    <div class="formation-title">Mindset de Leader</div>
+    <div class="prices">
+      <span class="old-price">10 000 XAF</span>
+      <span class="new-price">3 000 XAF</span>
+    </div>
+    <button class="btn-formation">Obtenir la formation</button>
+    <div class="download-info" id="dl1"></div>
+    <div class="description-container">
+      <button class="toggle-btn" onclick="toggleDesc(1)">
+        <span id="icon1">▼</span> Voir la description
+      </button>
+      <div class="description-text" id="desc1">
+        <ul>
+          <li>✔ Techniques pour développer votre mindset</li>
+          <li>✔ Stratégies de prise de décision</li>
+          <li>✔ Plan d’action pour devenir un vrai leader</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formation 2 -->
+  <div class="formation-card">
+    <div class="promo-label">PROMO</div>
+    <img src="https://via.placeholder.com/300x180?text=Formation+2" alt="Formation 2">
+    <div class="formation-title">Gagner avec le Digital</div>
+    <div class="prices">
+      <span class="old-price">12 000 XAF</span>
+      <span class="new-price">4 500 XAF</span>
+    </div>
+    <button class="btn-formation">Obtenir la formation</button>
+    <div class="download-info" id="dl2"></div>
+    <div class="description-container">
+      <button class="toggle-btn" onclick="toggleDesc(2)">
+        <span id="icon2">▼</span> Voir la description
+      </button>
+      <div class="description-text" id="desc2">
+        <ul>
+          <li>✔ Les business qui marchent sur Internet</li>
+          <li>✔ Outils de marketing digital puissants</li>
+          <li>✔ Comment vendre même en dormant</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formation 3 -->
+  <div class="formation-card">
+    <div class="promo-label">PROMO</div>
+    <img src="https://via.placeholder.com/300x180?text=Formation+3" alt="Formation 3">
+    <div class="formation-title">Productivité & Discipline</div>
+    <div class="prices">
+      <span class="old-price">8 000 XAF</span>
+      <span class="new-price">2 500 XAF</span>
+    </div>
+    <button class="btn-formation">Obtenir la formation</button>
+    <div class="download-info" id="dl3"></div>
+    <div class="description-container">
+      <button class="toggle-btn" onclick="toggleDesc(3)">
+        <span id="icon3">▼</span> Voir la description
+      </button>
+      <div class="description-text" id="desc3">
+        <ul>
+          <li>✔ Planifier sa journée comme un pro</li>
+          <li>✔ Se libérer de la procrastination</li>
+          <li>✔ Atteindre 3x plus d’objectifs par semaine</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formation 4 -->
+  <div class="formation-card">
+    <div class="promo-label">PROMO</div>
+    <img src="https://via.placeholder.com/300x180?text=Formation+4" alt="Formation 4">
+    <div class="formation-title">L'Art de Convaincre</div>
+    <div class="prices">
+      <span class="old-price">9 000 XAF</span>
+      <span class="new-price">2 900 XAF</span>
+    </div>
+    <button class="btn-formation">Obtenir la formation</button>
+    <div class="download-info" id="dl4"></div>
+    <div class="description-container">
+      <button class="toggle-btn" onclick="toggleDesc(4)">
+        <span id="icon4">▼</span> Voir la description
+      </button>
+      <div class="description-text" id="desc4">
+        <ul>
+          <li>✔ Techniques de persuasion efficaces</li>
+          <li>✔ Améliorer ses ventes & ses discours</li>
+          <li>✔ Influence positive & éthique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleDesc(id) {
+    const desc = document.getElementById("desc" + id);
+    const icon = document.getElementById("icon" + id);
+    if (desc.style.display === "block") {
+      desc.style.display = "none";
+      icon.textContent = "▼";
+    } else {
+      desc.style.display = "block";
+      icon.textContent = "▲";
+    }
+  }
+
+  // Génère des nombres croissants et dynamiques
+  for (let i = 1; i <= 4; i++) {
+    let base = localStorage.getItem("formation" + i) || 50 + i * 10;
+    let newCount = parseInt(base) + Math.floor(Math.random() * 5 + 1);
+    document.getElementById("dl" + i).textContent = `${newCount} personnes ont déjà téléchargé cette formation`;
+    localStorage.setItem("formation" + i, newCount);
+  }
+</script>
+
+</body>
+</html>
+
+<!-- AUTRES FORMATIONS (5 à 8) -->
+<div class="formations-container">
+    <!-- Formation 5 -->
+    <div class="formation-card">
+      <div class="promo-label">PROMO</div>
+      <img src="https://via.placeholder.com/300x180?text=Formation+5" alt="Formation 5">
+      <div class="formation-title">Instagram Business</div>
+      <div class="prices">
+        <span class="old-price">11 000 XAF</span>
+        <span class="new-price">3 500 XAF</span>
+      </div>
+      <button class="btn-formation">Obtenir la formation</button>
+      <div class="download-info" id="dl5"></div>
+      <div class="description-container">
+        <button class="toggle-btn" onclick="toggleDesc(5)">
+          <span id="icon5">▼</span> Voir la description
+        </button>
+        <div class="description-text" id="desc5">
+          <ul>
+            <li>✔ Optimiser un profil pro Instagram</li>
+            <li>✔ Créer du contenu viral</li>
+            <li>✔ Vendre sans publicité payante</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formation 6 -->
+    <div class="formation-card">
+      <div class="promo-label">PROMO</div>
+      <img src="https://via.placeholder.com/300x180?text=Formation+6" alt="Formation 6">
+      <div class="formation-title">Freelancing & Indépendance</div>
+      <div class="prices">
+        <span class="old-price">13 000 XAF</span>
+        <span class="new-price">4 000 XAF</span>
+      </div>
+      <button class="btn-formation">Obtenir la formation</button>
+      <div class="download-info" id="dl6"></div>
+      <div class="description-container">
+        <button class="toggle-btn" onclick="toggleDesc(6)">
+          <span id="icon6">▼</span> Voir la description
+        </button>
+        <div class="description-text" id="desc6">
+          <ul>
+            <li>✔ Comment se lancer sans diplôme</li>
+            <li>✔ Trouver ses premiers clients en ligne</li>
+            <li>✔ Construire un revenu stable depuis chez soi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formation 7 -->
+    <div class="formation-card">
+      <div class="promo-label">PROMO</div>
+      <img src="https://via.placeholder.com/300x180?text=Formation+7" alt="Formation 7">
+      <div class="formation-title">Réseaux Sociaux & Vente</div>
+      <div class="prices">
+        <span class="old-price">10 000 XAF</span>
+        <span class="new-price">3 000 XAF</span>
+      </div>
+      <button class="btn-formation">Obtenir la formation</button>
+      <div class="download-info" id="dl7"></div>
+      <div class="description-container">
+        <button class="toggle-btn" onclick="toggleDesc(7)">
+          <span id="icon7">▼</span> Voir la description
+        </button>
+        <div class="description-text" id="desc7">
+          <ul>
+            <li>✔ Maîtriser Facebook, WhatsApp, TikTok</li>
+            <li>✔ Créer une communauté qui achète</li>
+            <li>✔ Scripts de vente prêts à l’emploi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formation 8 -->
+    <div class="formation-card">
+      <div class="promo-label">PROMO</div>
+      <img src="https://via.placeholder.com/300x180?text=Formation+8" alt="Formation 8">
+      <div class="formation-title">Créer son Business en ligne</div>
+      <div class="prices">
+        <span class="old-price">15 000 XAF</span>
+        <span class="new-price">5 000 XAF</span>
+      </div>
+      <button class="btn-formation">Obtenir la formation</button>
+      <div class="download-info" id="dl8"></div>
+      <div class="description-container">
+        <button class="toggle-btn" onclick="toggleDesc(8)">
+          <span id="icon8">▼</span> Voir la description
+        </button>
+        <div class="description-text" id="desc8">
+          <ul>
+            <li>✔ Choisir une niche rentable</li>
+            <li>✔ Lancer une offre en 7 jours</li>
+            <li>✔ Générer des revenus durables</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<scriptfor (let i = 5; i <= 8; i++) {
+    let base = localStorage.getItem("formation" + i) || 40 + i * 10;
+    let newCount = parseInt(base) + Math.floor(Math.random() * 4 + 1);
+    document.getElementById("dl" + i).textContent = `${newCount} personnes ont déjà téléchargé cette formation`;
+    localStorage.setItem("formation" + i, newCount);
+  }
+  ></script>  
